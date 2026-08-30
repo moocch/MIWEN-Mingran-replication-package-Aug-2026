@@ -1,7 +1,7 @@
 Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-Copyright (c) 2026 Mingran Jia, Sri Krishna Vadlamani, Kfir Sulimany, Zhihui Gao,
-Hanfeng Wang, Tingjun Chen, Dirk Englund
+Copyright (c) 2026 Mingran Jia, Sri Krishna Vadlamani, Kfir Sulimany,
+Jonathan Morag, Zhihui Gao, Hanfeng Wang, Tingjun Chen, Dirk Englund
 
 This license covers the DATA, FIGURES and DOCUMENTATION in this repository —
 including but not limited to *.npz, *.npy, *.pt, *.json, *.csv, *.txt, *.log,
@@ -23,8 +23,8 @@ under the following term:
 
 Please attribute by citing the associated manuscript:
 
-  M. Jia, S. K. Vadlamani, K. Sulimany, Z. Gao, H. Wang, T. Chen and
-  D. Englund, "Machine intelligence on wireless edge networks" (2026).
+  M. Jia, S. K. Vadlamani, K. Sulimany, J. Morag, Z. Gao, H. Wang, T. Chen
+  and D. Englund, "Machine intelligence on wireless edge networks" (2026).
 
 Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
 Human-readable summary: https://creativecommons.org/licenses/by/4.0/

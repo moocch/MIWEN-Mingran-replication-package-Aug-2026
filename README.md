@@ -2,12 +2,17 @@
 
 Data and code underlying the figures, tables and reported numbers of
 
-> **Machine intelligence on wireless edge networks**
-> Mingran Jia\*, Sri Krishna Vadlamani\*, Kfir Sulimany\*, Zhihui Gao, Hanfeng Wang,
-> Tingjun Chen, Dirk Englund
-> \*These authors contributed equally.
-> Research Laboratory of Electronics, Massachusetts Institute of Technology ·
-> Department of Electrical and Computer Engineering, Duke University
+> **Machine intelligence on wireless edge networks**  
+> Mingran Jia\*, Sri Krishna Vadlamani\*, Kfir Sulimany\*, Jonathan Morag,  
+> Zhihui Gao, Hanfeng Wang, Tingjun Chen, Dirk Englund  
+> \*These authors contributed equally to this work.  
+>  
+> Research Laboratory of Electronics, Massachusetts Institute of Technology,
+> Cambridge, MA 02139, USA  
+> Department of Electrical and Computer Engineering, Duke University,
+> Durham, NC 27708, USA  
+>  
+> Correspondence: englund@mit.edu
 
 **Snapshot:** August 2026 submission.
 
