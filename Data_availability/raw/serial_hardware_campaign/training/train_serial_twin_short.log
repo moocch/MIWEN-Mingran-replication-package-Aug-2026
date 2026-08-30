@@ -1,0 +1,5 @@
+[r3plus s0 ep 5/15] val 99.36 (best 99.36) (3438s)
+[r3plus s0 ep 10/15] val 99.87 (best 99.87) (6865s)
+[r3plus s0 ep 15/15] val 99.87 (best 99.87) (10294s)
+[r3plus s0] SELECTED ckpt: test full 98.56, test N=300 98.33 (selector best 99.87)
+[twin-train] exported serial_twin_s0_hw.npz

@@ -1,0 +1,66 @@
+
+===== N = 4096  (raw\gr_fig3c_ip_scatter_20260810_011915_N4096\gr_fig3c_ip_scatter.npz) =====
+[PASS] N=4096: vec_N field
+[PASS] N=4096: 25-dB panel is index 1
+[PASS] N=4096: rf_atten_db = 30 in meta_json
+[PASS] N=4096: P_x = -62.81 dBm  (measured -62.8105 dBm)
+[PASS] N=4096: P_x = 0.524 nW  (measured 0.5235 nW)
+[PASS] N=4096: LO (weight) comb at -3 dBm
+[PASS] N=4096: frame carries 227 (fft+cp) bursts  ((1 preamble + 26 pilot + 200 data slots))
+[PASS] N=4096: T_ip = 1.918 ms  (computed 1.9177 ms)
+[PASS] N=4096: gap-charging variant +0.43%, no quoted change  (1.926 ms vs 1.918 ms)
+[PASS] N=4096: airtime per real MAC = 117 ns  (computed 117.05 ns)
+[PASS] N=4096: e1 = 0.613 fJ/MAC  (computed 0.6128 fJ)
+[PASS] N=4096: e2 = 0.366 fJ/MAC  (computed 0.3662 fJ)
+[PASS] N=4096: e3 = 0.488 fJ/MAC  (computed 0.4883 fJ)
+[PASS] N=4096: e_ip = 1.467 fJ/MAC  (computed 1.4673 fJ)
+[PASS] N=4096: 47.7x below the 70-fJ H100 reference  (computed 47.71x)
+[PASS] N=4096: RMSE mean = 0.0609  (measured 0.06093)
+[PASS] N=4096: RMSE s.d. = 0.0003  (measured 0.00026)
+[PASS] N=4096: all three 25-dB repeats satisfy RMSE < 0.0625  (reps [0.0611 0.0606 0.0611])
+[PASS] N=4096: 15-dB point misses the criterion (RMSE 0.0672)  (measured 0.0672)
+[PASS] N=4096: std_y = 0.3395  (measured 0.33950)
+[PASS] N=4096: tuner tolerance 0.4 dB in meta_json
+[PASS] N=4096: tuner converged within 2-3 iterations (both panels)  (iterations per panel [2, 2])
+[PASS] N=4096: final captures within the 0.4-dB tolerance  (final |err_db| ['0.159', '0.363'])
+[PASS] N=4096: three repeats at frozen power
+
+===== N = 65536  (raw\gr_fig3c_ip_scatter_20260810_002043_N65536\gr_fig3c_ip_scatter.npz) =====
+[PASS] N=65536: vec_N field
+[PASS] N=65536: 25-dB panel is index 1
+[PASS] N=65536: rf_atten_db = 30 in meta_json
+[PASS] N=65536: P_x = -63.41 dBm  (measured -63.4050 dBm)
+[PASS] N=65536: P_x = 0.457 nW  (measured 0.4566 nW)
+[PASS] N=65536: LO (weight) comb at -3 dBm
+[PASS] N=65536: frame carries 227 (fft+cp) bursts  ((1 preamble + 26 pilot + 200 data slots))
+[PASS] N=65536: T_ip = 30.68 ms  (computed 30.6831 ms)
+[PASS] N=65536: gap-charging variant +0.43%, no quoted change  (30.814 ms vs 30.683 ms)
+[PASS] N=65536: airtime per real MAC = 117 ns  (computed 117.05 ns)
+[PASS] N=65536: e1 = 0.534 fJ/MAC  (computed 0.5344 fJ)
+[PASS] N=65536: e2 = 0.023 fJ/MAC  (computed 0.0229 fJ)
+[PASS] N=65536: e3 = 0.031 fJ/MAC  (computed 0.0305 fJ)
+[PASS] N=65536: e_ip = 0.588 fJ/MAC  (computed 0.5878 fJ)
+[PASS] N=65536: 119.0x below the 70-fJ H100 reference  (computed 119.09x)
+[PASS] N=65536: RMSE mean = 0.0561  (measured 0.05609)
+[PASS] N=65536: RMSE s.d. = 0.0006  (measured 0.00057)
+[PASS] N=65536: all three 25-dB repeats satisfy RMSE < 0.0625  (reps [0.0567 0.0557 0.0558])
+[PASS] N=65536: 15-dB point misses the criterion (RMSE 0.0643)  (measured 0.0643)
+[PASS] N=65536: std_y = 0.3343  (measured 0.33430)
+[PASS] N=65536: tuner tolerance 0.4 dB in meta_json
+[PASS] N=65536: tuner converged within 2-3 iterations (both panels)  (iterations per panel [2, 3])
+[PASS] N=65536: final captures within the 0.4-dB tolerance  (final |err_db| ['0.141', '0.044'])
+[PASS] N=65536: three repeats at frozen power
+
+===== cross-size and reference-line quantities =====
+[PASS] criterion-equivalent ENOB range 2.42-2.44 bits  (log2(std_y/0.0625) = 2.4192 (N=65536), 2.4415 (N=4096))
+[PASS] N_bend = 14 pJ / (4 e1) ~ 6.5e3  (computed 6550)
+[PASS] Eq. S10 model curve: N=4096 point sits ~6% above it  (excess 5.6%)
+[PASS] Landauer = thermodynamic bound = 11.48 zJ at b=2 (algebraic identity)  (computed 11.4839 zJ)
+[PASS] measured N=65536 point sits ~5.1e4 above the b=2 floor  (computed 5.118e+04)
+[PASS] N=65536: with correction deployed e_ip = 0.649 fJ/MAC  (computed 0.6488 fJ)
+[PASS] N=65536: corrected point 108.0x below H100  (computed 107.89x)
+[PASS] N=4096: with correction deployed e_ip = 2.444 fJ/MAC  (computed 2.4438 fJ)
+[PASS] N=4096: corrected point 28.6x below H100  (computed 28.64x)
+
+All 57 checks passed: every Supplementary Note 3 number is
+reproduced from the archived raw npz bytes + package conventions.

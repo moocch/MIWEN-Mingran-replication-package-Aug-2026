@@ -1,0 +1,336 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\dbm}{\ensuremath{\,\mathrm{dBm}}}
+\title{Time-domain (serial) pilot: run package audit\\
+\large the complete training and inference protocol, and every
+difference from the certified frequency-comb $|Y|$ run}
+\date{2026-08-24 (v3 --- final: single-file freeze, full equations,
+completed $2\times2$)}
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+\section{Claim under test}
+In time-serial encoding each product traverses the mixer at its own
+amplitude, so the device transfer curve acts \emph{inside} the
+summation and cannot be corrected at readout. The experiment compares
+two networks of the identical certified architecture, executed on the
+identical hardware protocol: one trained assuming an ideal multiplier
+(``clean''), one trained \emph{through} a measurement-calibrated
+Shockley-like digital twin (``twin''). $2\times2$ = \{clean, twin\}
+$\times$ \{digital, hardware\}. \textbf{No noise injection in either
+arm; no bias correction anywhere.} Operating point $(0,0)$\dbm{}
+commanded, both ports; chain: the 10\,dB IF pads as installed.
+
+\section{Run package inventory (single-file freeze)}
+As in the certified $|Y|$ freeze, \textbf{one file carries every
+algorithmic step}; everything else is hardware orchestration, frozen
+inputs, or saved outputs.
+\begin{center}\small
+\begin{tabular}{p{4.3cm}p{5.6cm}p{5.2cm}}
+\toprule
+file & role & status\\
+\midrule
+\texttt{miwen\_serial\_frozen\_ reference.py} & \textbf{THE frozen
+algorithm file} --- preprocessing, weights loading, ideal and
+twin-forward digital execution, twin surface, slot encoding
+constants, chirp sync, slot decode, interpass, decision. Self-checks
+via \texttt{--verify}: weight and twin-model sha pins, clean ideal
+digital 99.05/99.50, bit-exact twin-surface probe hash, bit-exact
+hardware-capture replay decode hash & frozen; header comments list
+every difference from the $|Y|$ freeze\\
+\texttt{serial\_nn\_runner.py} (v3) & hardware session driver
+\emph{only} (USRP I/O, captures, chunking, gates, incremental
+saves); each algorithmic step is the reference file's & frozen,
+hardware-validated (pack-test repeats 0.1155/0.1160/0.1162/0.1171)\\
+\texttt{r35\_r3plus\_s0\_hw.npz} & clean arm weights
+(sha \texttt{8a4c9efddbf8cfd0}) & verified: digital 99.50 on the
+battery frame\\
+\texttt{serial\_twin\_s0\_hw.npz} & twin arm weights (sha
+\texttt{825ab4ee148dc1cd}), 15-epoch sprint (val-under-twin 99.87);
+60-epoch sibling archived (\texttt{...\_ep60\_hw.npz},
+val 99.92) --- the 15-vs-150-epoch asymmetry vs the clean arm is
+disclosed & fielded for the completed N=300\\
+\texttt{serial\_twin\_model.json} & the frozen twin surface (sha
+\texttt{b07bb82b328d9c8e}), produced by
+\texttt{serial\_twin\_fit.py} & held-out 0.12\,dB; serial-slot
+cross-validation 3.7\% worst bin\\
+\texttt{serial\_cal\_\{arm\}\_ 20260823.npz} & frozen per-arm
+calibration (scales + gains) & complete, both arms\\
+\texttt{serial\_nn\_\{arm\}\_\{i0\}\_ \{i1\}\_20260823.npz} &
+chunk-saved predictions & complete: clean N=300 (4 chunks), twin
+N=300\\
+\texttt{battery\_random1200\_idx.npy} & evaluation images (same
+frozen set as all campaign benchmarks) & frozen\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Encoding and readout (inference protocol)}
+One product per 32-sample slot (3.2\,\textmu s): non-negative
+activations as RF slot envelopes on subcarrier $+2.2$\,MHz; weights as
+LO slot envelopes on $-1.8$\,MHz, \textbf{sign and phase carried on
+the slot carrier} (complex weights encoded directly --- both
+quadratures used, as in the certified $|Y|$ era). Every product lands
+on the single difference tone; 8-sample guards at slot edges. Chirp
+preamble for timing only. Readout: the slots of one output row are
+summed \emph{coherently} (the digital emulation of an analog
+integrate-and-dump at the IF), then the \textbf{magnitude} is taken
+--- so the absolute capture phase cancels and \emph{no phase
+reference is used or needed}. Between layers: the certified $|Y|$
+interpass unchanged (folded BatchNorm, ReLU, maxpool, per-image
+max-norm); decision $\arg\max S^2$. Calibration per arm: one frozen
+drive scale per layer (the layer's slot-stream RMS, fixed from a
+10-image batch so every chunk runs at one operating point) and one
+scalar gain per layer (least squares of $|$row sum$|$ vs ideal).
+Chunks are row-aligned (no row ever spans two captures). No debias:
+the certified chain's Rician correction is unnecessary at row-sum
+SNR, and its absence is deliberate and gated.
+
+\section{The twin (training physics)}
+Mingran's Shockley-derived core with the documented corrections ---
+two distinct one-pole knees (May: LO $+2.17\pm0.19$, RF
+$+3.66\pm0.20$\dbm), the reciprocity-sign fix, effective (not
+physical) thermal voltage --- plus $K{=}20$ tanh ridges for the
+map-vs-equation residual (May: 0.89\,dB held-out; adding ridges
+beyond $K{\approx}30$ buys nothing against the 0.65\,dB repeat
+floor). Coefficients are \textbf{fitted to our port-calibrated USRP
+CW map}, with the datasheet and the May parameters as external
+plausibility gates --- fitted values, not datasheet values, because
+family-typical specs carry 2--3\,dB tolerance against a 0.9\,dB
+model budget. Lift to a signed slot transfer by exact ring odd
+symmetry: $f(x,w)=\operatorname{sgn}(xw)\,A(|x|,|w|)$. Excluded, per
+plan: thermal noise and memory. Leakage is handled exactly as in the
+code: the \emph{fit's} measurement model for CW-map cells augments the
+product term with two per-port leakage powers ($10^{(l_1+P_{LO})/10}$
+and $10^{(l_2+P_{RF})/10}$; fitted: LO-side absent at $-210$, RF-side
+$\approx-102$\,dB) --- instrument terms that de-bias the map reading
+and are \textbf{excluded from the fielded twin}, whose slot decode
+rejects that content by construction. Gates as finally frozen: G2 held-out $\le 1.3$\,dB on
+the product-dominated fit region, both ports $\ge -35$\dbm{}
+(achieved: \textbf{0.12\,dB}); G3 the assembled twin must
+\emph{predict} the independently measured serial slot curve at
+$(0,0)$, duty-corrected, fitted on none of that data (achieved:
+\textbf{3.7\% worst bin}). G1 --- named knee values vs the May fit
+--- was \textbf{waived and demoted to reported-only}: the measured
+surface's compression is joint (sum-type, cf.\ the May analysis's own
+sum-oriented ridges), so separable per-port knees are not
+identifiable on this map; an honest physical finding, documented
+rather than forced. In training the surface is evaluated from a
+$256^2$ bilinear table (max deviation 0.069\,dB from the analytic
+form, verified). The twin enters
+\textbf{training only}: the forward applies $f$ to every product
+before summation; at inference the real mixer applies the real $f$.
+Nothing twin-related exists in the inference path of either arm.
+
+\section{The equations, before and after the corrections}
+
+\subsection*{Instantaneous device law (draft-era form; retired)}
+The published manuscript's device law (its Eq.~2) is the symmetric
+$\sinh\!\times\!\sinh$ ring transfer, which contains no feedthrough
+half-term and needs no correction; the fielded sign convention
+$\operatorname{sgn}(xw)$ \emph{is} that law's odd symmetry. The form
+below, and the corrections applied to it, belong to a pre-arXiv draft
+and are retained here as provenance only ($w$ = LO port, $x$ = RF
+port, $V_T = k_BT/e \approx 25.85$\,mV):
+\begin{equation}
+y(t) \;=\; \frac{w(t)}{2} \;+\; \frac{V_T}{2}\,
+\ln\!\left[\frac{e^{x(t)/V_T} + e^{-w(t)/V_T}}
+               {e^{x(t)/V_T} + e^{w(t)/V_T}}\right].
+\end{equation}
+Corrections established by the May analysis and the August
+refinement: (i) the \emph{effective} thermal voltage must be used,
+$V_T \to V_T^{\rm eff} \approx 165$\,mV ($\approx 6\times$ the
+physical value; port-to-diode voltage division $\sim 1/6$ through
+transformers and matching); (ii) the explicit feedthrough half-term
+carries the wrong port --- the formula's predicted LO$\leftrightarrow$RF
+asymmetry \emph{anti-}correlates with the measured surface
+($r=-0.66$); swapping the port roles in that term,
+\begin{equation}
+y(t) \;=\; \frac{x(t)}{2} \;+\; \frac{V_T^{\rm eff}}{2}\,
+\ln\!\left[\frac{e^{w(t)/V_T^{\rm eff}} + e^{-x(t)/V_T^{\rm eff}}}
+               {e^{w(t)/V_T^{\rm eff}} + e^{x(t)/V_T^{\rm eff}}}\right],
+\end{equation}
+flips the asymmetry correlation to $r=+0.64$.
+
+\subsection*{Power-surface hybrid (May form, AWG dataset)}
+\begin{equation}
+P_{\rm IF}(P_{\rm LO},P_{\rm RF}) = \mathrm{w2dBm}\!\left[
+\alpha\, S(P_{\rm LO};P_{\rm LO,sat})\, S(P_{\rm RF};P_{\rm RF,sat})
++ P_{\rm leak}\right] + \sum_{i=1}^{10} w_i
+\tanh(a_iP_{\rm LO} + b_iP_{\rm RF} + c_i),
+\end{equation}
+$S(x;x_{\rm sat}) = x/(1+x/x_{\rm sat})$ (one-pole, linear power);
+fitted knees $P_{\rm LO,sat}=+2.17\pm0.19$, $P_{\rm RF,sat}=
++3.66\pm0.20$\,dBm, $\alpha = 27.62\pm0.18$\,dB, $P_{\rm leak} =
+-73.87\pm0.07$\,dBm --- all matching the ZEM-4300+ datasheet within
+2--3\,dB.
+
+\subsection*{The frozen serial twin (final form, USRP map)}
+Product term only, fitted on the product-dominated region (both
+ports $\ge -35$\dbm; the feedthrough-dominated edges are excluded
+because the slot decode rejects carrier-frequency content), $K=20$:
+\begin{equation}
+P^{\rm dB}_{\rm prod}(P_{\rm LO},P_{\rm RF}) = a_0 +
+10\log_{10}\!\big[\tilde S(P_{\rm LO};k_{\rm LO})\,
+\tilde S(P_{\rm RF};k_{\rm RF})\big]
++ \sum_{i=1}^{20} w_i \tanh\!\Big(\frac{a_iP_{\rm LO}}{40} +
+\frac{b_iP_{\rm RF}}{40} + c_i\Big),
+\end{equation}
+with $\tilde S(P;k) = u/(1+u)$, $u = 10^{(P-k)/10}$. The knee values
+are \emph{reported, not gated}: the measured compression is joint
+(sum-type; per-port knees unidentifiable on this surface). Held-out
+0.12\,dB on the region; serial-slot cross-validation 3.7\% worst bin.
+Lift to the signed slot transfer by exact ring odd symmetry, with the
+frozen drive mapping (unit-RMS slot streams at commanded $(0,0)$):
+\begin{equation}
+f(x,w) = \operatorname{sgn}(xw)\cdot
+10^{P^{\rm dB}_{\rm prod}(p_{\rm lo}(|w|),\,p_{\rm rf}(|x|))/20},
+\qquad p(\,a\,) = 20\log_{10}\!\frac{a}{\mathrm{rms}(\text{stream})}.
+\end{equation}
+In training, $f$ is applied to every product before summation
+(evaluated from a $256^2$ bilinear table, max deviation 0.069\,dB);
+at inference the mixer applies the real $f$; nothing twin-related
+exists in either arm's inference path.
+
+\section{Differences from the certified comb $|Y|$ run}
+\begin{center}\small
+\begin{tabular}{p{3.4cm}p{5.2cm}p{5.2cm}}
+\toprule
+& certified comb $|Y|$ (98.83/98.92) & serial pilot\\
+\midrule
+encoding & $\le$800 simultaneous tones per symbol & one tone; $D$
+consecutive time slots\\
+where the sum happens & inside the mixer/FFT, \emph{before} the
+nonlinearity's effect is read & across time slots, \emph{after} the
+nonlinearity acts per product\\
+governing physics & Bussgang: crowd-linearized, one $\kappa$ +
+uncorrelated deviation & per-product transfer curve; Bussgang premise
+absent by construction\\
+training & noise-injected (ns25, flat 25\%) & \textbf{no noise};
+clean vs twin-in-the-loop\\
+calibration & 43--128 per-column gains per layer + Rician debias
+($\sigma^2$ estimation) & one scalar per layer; no debias\\
+phase handling & readout magnitude per FFT bin & readout magnitude
+per row sum; phases still carried at TX in both\\
+drive normalization & frame-RMS (sync-duty sensitive) & frozen
+per-layer slot-stream RMS (duty-free)\\
+operating point & $-35$\dbm-class (record era) & $(0,0)$ commanded\\
+throughput & $\sim$2.4\,h per N=300 arm & $\sim$6\,h per N=150 half
+(linear in products)\\
+evaluation images & frozen battery indices & \emph{same} frozen
+battery indices\\
+architecture, weights class & r3plus, complex weights, $|Y|$
+interpass & identical (clean arm literally the certified-era
+checkpoint)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Session discipline and gates (all pre-registered)}
+Pack-test at session start: 150k random products through a full-size
+frame; gain vs the frozen big-frame reference ($0.1155\pm20\%$;
+measured session-to-session repeat 0.6\%) and residual shape in
+$[0.30, 0.75]$ --- the decode-corruption detector. Chain gate:
+first-capture payload peak within band of the 2026-08-21 diagnostic.
+Sync margin $\ge 50$ (typ.\ $\sim$1750). Calibration saved and
+reloaded across the split halves (H1 = battery images 0--149, H2 =
+150--299) so both halves run identical frozen corrections. No
+accuracy gates on either arm: both outcomes reportable. Pre-pinned
+digital predictions (computed before the corresponding hardware
+data is examined): clean digital 99.50 (verified); clean-under-twin,
+twin-under-twin, twin-under-ideal --- pinned once the twin passes
+G1--G3.
+
+\section{Measured results (final)}
+Pinned digital predictions (committed before the corresponding
+hardware): clean 99.50; clean-under-twin \textbf{0.67\%};
+twin-under-twin \textbf{98.33} (N=300 frame) / 98.56 (full).
+Completed hardware, N=300, one operating point $(0,0)$\dbm:
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & digital & hardware\\
+\midrule
+clean (ideal-multiplier training) & 99.50 & \textbf{6.33\%}\\
+twin-in-training & 98.33 (under twin) & \textbf{97.67}\\
+\bottomrule
+\end{tabular}
+\end{center}
+The twin arm lands \textbf{2 images} from its pinned prediction
+(98.33 $\to$ 97.67); the clean arm collapses to near the pinned
+clean-under-twin forecast (0.67 forecast, 6.33 measured --- both
+``destroyed'', the residual gap consistent with hardware noise the
+twin deliberately omits). Per-layer calibration relRMSE against each
+arm's own training forward: twin
+$[0.142,\,0.087,\,0.021,\,0.162]$ vs clean-vs-ideal
+$[0.53,\,0.61,\,0.32,\,2.94]$ --- the twin describes the hardware
+an order of magnitude better \emph{at every layer}. Supporting:
+per-product ENOB at $(0,0)$, naive 2.53 bits vs twin-inverted
+\textbf{4.38 bits} (the recoverable-vs-lost information split);
+Stage A drive ladder linear-residual 0.21/0.42/0.52/0.59/0.67
+across $-9$ to $+7$\dbm{} --- the per-product curve steepening the
+network must survive.
+
+\subsection*{Fresh-segment replication and the second operating point
+(2026-08-26; byte-frozen code, frozen calibrations reloaded, digital
+comparators committed pre-hardware)}
+Every arm re-measured on the disjoint battery segment (images
+300--599), plus the clean arm at a second operating point
+$(\mathrm{LO}\,{-10},\mathrm{RF}\,{-24})$\dbm{} (working-group
+geometry; runner byte-identical except the operating-point constant
+and re-anchored session gates, per the session pre-spec):
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+arm & images 0--299 & images 300--599 & pooled (N=600)\\
+\midrule
+$(0,0)$ clean & 6.33 & 5.00 & \textbf{5.67}\\
+$(0,0)$ twin  & 97.67 & 99.33 & \textbf{98.50}\\
+$(-10,-24)$ clean & 81.67 & 82.00 & \textbf{81.83}\\
+\bottomrule
+\end{tabular}
+\end{center}
+The twin arm's fresh segment (99.33) exceeds its own digital
+comparator (98.67) by two images --- the certified-era
+measured-above-digital elevation, replicated on disjoint data. The
+collapse replicates with an identical constant-classifier fingerprint
+(297/300 predictions in one class both segments). The $(-10,-24)$
+clean result replicates across segments within one image (81.67 vs
+82.00) against pipeline forecasts of 83.00/85.67 --- the
+no-breakdown demonstration at reduced drive, with no twin anywhere in
+its path. Eight consecutive sessions repeated the pack-test gain
+within 1.6\% at $(0,0)$ and 0.9\% at $(-10,-24)$.
+
+\subsection*{Session trail (original, retained)}
+Pack-test: $|g|=0.1162$ vs reference 0.1155, residual 0.527 ---
+packing validated on hardware. The sync-duty drive effect
+($\sim$3\,dB payload shift between 34\%-duty diagnostic frames and
+0.35\%-duty production frames) was caught by the pack gate,
+diagnosed, and re-baselined --- same physics class as the historic
+hot-sync discoveries. Clean-arm conv1 calibration:
+relRMSE$(|Y|)=0.859$ against its own ideal-multiplier model ---
+\textbf{the serial per-product distortion, un-launderable by a scalar
+gain, exactly as predicted} (comb-era equivalents: 0.10--0.20). Twin
+fit: physics-core identifiability required the May three-stage
+protocol and exclusion of ADC-censored cells; iteration ongoing ---
+current status and all intermediate failures are logged in the
+session record, not hidden.
+
+\section{Reading of the outcome}
+The two twin-validation checks both passed: (i) clean-hardware
+(6.33) landed at the pinned clean-under-twin forecast's
+``collapse'' verdict --- the twin \emph{forecast} an untrained
+network's fate; (ii) twin-hardware (97.67) landed 2 images from
+twin-under-twin (98.33) --- twin-in-the-loop training \emph{is} the
+serial regime's hardware-awareness mechanism. Together with the comb
+program (where the same device curve in training produced 2--10\%
+pilots and linear calibration sufficed at 98.83), the pair of
+experiments demonstrates that \emph{the encoding, not the device,
+decides which abstraction training needs}: nonlinearity outside the
+sum is a readout detail; nonlinearity inside the sum requires a
+physical twin in the training loop.
+
+\end{document}

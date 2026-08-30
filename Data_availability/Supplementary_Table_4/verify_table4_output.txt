@@ -1,0 +1,58 @@
+==============================================================================
+Supplementary Table 4 — cell-by-cell verification against archived data
+==============================================================================
+
+--- benchmark constants ---
+[PASS] GPU reference = 70 fJ/MAC: quoted 70.0 | archive 70.0  <- fig5_plot_data.npz h100_line (meta: h100_J_per_mac)
+[PASS] e_dig = 1 pJ per real MAC: quoted 1.0 | archive 1.0  <- fig5_plot_data.npz meta_json e_dig_J
+[PASS] energy panel is the 25 dB panel: quoted 25 dB | archive 25 dB  <- fig5_plot_data.npz meta_json panel
+[PASS] correction file is N=65,536: quoted 65536 | archive 65536  <- ip_optimized_N65536_20260826.npz vec_N
+
+--- twin-correction deployment fee (the only new arithmetic) ---
+[PASS] correction = 4 complex coefficients per answer: quoted 4 | archive 4  <- ip_optimized_N65536_20260826.npz coeffs.shape / basis_names ['twin', 'limiter', 'square', 'gain']
+[PASS] => 16 real MACs = 16 pJ per answer: quoted 16 | archive 16  <- 4 real MACs per complex MAC x 4 coefficients, at e_dig = 1 pJ/MAC
+       fee per real MAC: N=65536 -> 0.0610 fJ, N=4096 -> 0.9766 fJ  (16 pJ / 4N)
+
+--- top block: inner-product primitive, N=65,536, 25 dB ---
+[PASS] raw decode RMSE = 0.056: quoted 0.056 | archive 0.056  <- fig5_plot_data.npz points_rmse_mean[N=65536] = 0.056095
+[PASS] raw ENOB = 2.58: quoted 2.58 | archive 2.58  <- fig5_plot_data.npz points_enob_mean[N=65536] = 2.57524
+[PASS] raw energy = 0.588 fJ per real MAC: quoted 0.588 | archive 0.588  <- fig5_plot_data.npz points_e_ip[N=65536] = 0.587794 fJ
+[PASS] raw advantage = 119x vs 70-fJ GPU: quoted 119 | archive 119  <- fig5_plot_data.npz points_speedup_vs_h100[N=65536] = 119.0893
+[PASS] stored speedup == h100_line / points_e_ip (N=65536): 119.0892640339557 vs 119.0892640339557  <- internal consistency
+[PASS] + twin correction RMSE = 0.017: quoted 0.017 | archive 0.017  <- ip_optimized npz rmse_after_mean[25 dB] = 0.017169
+[PASS] + twin correction ENOB = 4.28: quoted 4.28 | archive 4.28  <- ip_optimized npz enob_after_mean[25 dB] = 4.28328
+[PASS] + correction energy = 0.649 fJ per real MAC: quoted 0.649 | archive 0.649  <- 0.587794 fJ + 16 pJ/(4*65536) = 0.648830 fJ
+[PASS] + correction advantage = 108x: quoted 108 | archive 108  <- 70 fJ / 0.648830 fJ = 107.8866
+
+--- cross-checks: the two npz files describe the same measurement ---
+[PASS] points_rmse_mean[N=65536] == rmse_before_mean[25 dB]: 0.056094704215515184 vs 0.056094704215515184  <- raw 25-dB RMSE identical in both archives
+[PASS] points_enob_mean[N=65536] == enob_before_mean[25 dB]: 2.5752402595162347 vs 2.5752402595162347  <- raw 25-dB ENOB identical in both archives
+
+--- S3.5 companion numbers ---
+[PASS] N=4096 raw energy = 1.467 fJ: quoted 1.467 | archive 1.467  <- fig5_plot_data.npz points_e_ip[N=4096] = 1.467273 fJ
+[PASS] N=4096 corrected energy = 2.444 fJ: quoted 2.444 | archive 2.444  <- 1.467273 fJ + 16 pJ/(4*4096) = 2.443835 fJ
+[PASS] N=4096 raw advantage = 47.7x: quoted 47.7 | archive 47.7  <- fig5_plot_data.npz points_speedup_vs_h100[N=4096] = 47.7076
+[PASS] N=4096 corrected advantage = 28.6x: quoted 28.6 | archive 28.6  <- 70 fJ / 2.443835 fJ = 28.6435
+[PASS] 15-dB raw RMSE = 0.064 (N=65,536): quoted 0.064 | archive 0.064  <- ip_optimized npz rmse_before_mean[15 dB] = 0.064349
+[PASS] 15-dB corrected RMSE = 0.036 (N=65,536): quoted 0.036 | archive 0.036  <- ip_optimized npz rmse_after_mean[15 dB] = 0.035962
+
+--- bottom block: 43-class GTSRB classification ---
+[PASS] comb measured (noise-injection training) = 98.92%: quoted 98.92 | archive 98.92  <- provenance_comb_accuracies.md: '98.92 +/- 0.30 ... 1187/1200', battery_frozen_slim.npz, energy-honest rerun 2026-08-07
+[PASS]   curator recomputation agrees (1187/1200): quoted 98.92 | archive 98.92  <- provenance_comb_accuracies.md 'Verification performed while curating'
+[PASS] comb digital baseline (clean-trained) = 99.50%: provenance_comb_accuracies.md row #3: clean-trained digital model, same architecture, same 1,200 images (r35_r3plus_s0_hw.npz)
+[PASS] serial measured (twin-based training) = 98.50%: quoted 98.5 | archive 98.5  <- README_hardware_aware_training_v2.md main table: 591/600, hardware, (0,0) dBm, N=600
+[PASS] serial measured (clean weights) = 5.67%: quoted 5.67 | archive 5.67  <- README_hardware_aware_training_v2.md main table: 34/600 (collapsed: 590/600 predict class 12)
+[PASS] serial clean-digital reference = 99.50% (ideal): README_hardware_aware_training_v2.md main table, clean row, digital column
+[PASS] comb route: added inference energy = 0: by construction — noise injection changes training only; the 98.92 run is the energy-honest rerun with frozen offline calibration ('host computes NO W@x', provenance_comb_accuracies.md)
+[PASS] serial route: added inference energy = 0: by construction — the twin acts in the training loop only; the serial README states the inference path contains no twin component
+
+  NOTE: verify_accuracy.py (copied here for reference) needs the raw prediction npz
+  folders 05_hardware_result_0dBm_N600, 06_digital_comparators, 08_frozen_inputs_and_labels,
+  which are NOT copied into this archive. The executable proof lives in the campaign folder
+  "<archive>\202607_MIWEN_Manuscript\V2\hardware_aware_training_v2"
+  (python verify_accuracy.py there prints clean 34/600 = 5.67% and twin 591/600 = 98.50%);
+  here the cells are asserted against the archived provenance documents above.
+
+==============================================================================
+31/31 checks passed
+==============================================================================

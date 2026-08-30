@@ -1,0 +1,46 @@
+{
+ "mnist": {
+  "clean_digital": {
+   "acc": 95.77,
+   "std": 0.0
+  },
+  "clean_under_twin": {
+   "acc": 18.25,
+   "std": 0.0
+  },
+  "clean_hardware": {
+   "acc": 15.77,
+   "std": 0.3
+  },
+  "twin_digital": {
+   "acc": 94.6,
+   "std": 0.0
+  },
+  "twin_hardware": {
+   "acc": 92.62,
+   "std": 0.08
+  }
+ },
+ "gtsrb": {
+  "clean_digital": {
+   "acc": 85.28,
+   "std": 0.0
+  },
+  "clean_under_twin": {
+   "acc": 8.65,
+   "std": 0.0
+  },
+  "clean_hardware": {
+   "acc": 6.06,
+   "std": 0.08
+  },
+  "twin_digital": {
+   "acc": 87.08,
+   "std": 0.0
+  },
+  "twin_hardware": {
+   "acc": 75.13,
+   "std": 0.18
+  }
+ }
+}

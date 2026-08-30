@@ -1,0 +1,6 @@
+vector_length_N,rmse_ideal_multiplier_dB,rmse_physics_only_dB,rmse_full_PIML_twin_dB
+1,16.53,3.94,1.30
+2,18.71,3.37,1.91
+4,23.12,3.39,1.67
+8,21.61,2.81,1.55
+4096,10.35,1.80,0.79

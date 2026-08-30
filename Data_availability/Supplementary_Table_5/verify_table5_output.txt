@@ -1,0 +1,40 @@
+==============================================================================
+Supplementary Table 5 (tab:analog2x2) -- hardware-aware 2x2,
+simulated fully analog chain -- verification against twin_2x2.json
+==============================================================================
+[source] twin_2x2.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\supp_tables\table5_fully_analog_2x2\data\twin_2x2.json
+[source] results_summary.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\_shared_fully_analog_simulation\results\results_summary.json
+
+MNIST row 'clean' (weights MZC_L3; eval modes ZC / ZT / ZH):
+  digital (clean_digital.acc)                                got    95.77  want    95.77  PASS
+  digital s.d. (clean_digital.std)                           got     0.00  want     0.00  PASS
+  under-twin forecast (clean_under_twin.acc)                 got    18.25  want    18.25  PASS
+  chain (clean_hardware.acc)                                 got    15.77  want    15.77  PASS
+  chain s.d. (clean_hardware.std)                            got     0.30  want     0.30  PASS
+MNIST row 'twin-trained' (weights MZT_L3; eval modes ZT / ZH):
+  digital (twin_digital.acc)                                 got    94.60  want    94.60  PASS
+  chain (twin_hardware.acc)                                  got    92.62  want    92.62  PASS
+  chain s.d. (twin_hardware.std)                             got     0.08  want     0.08  PASS
+GTSRB row 'clean' (weights ZC_L3; eval modes ZC / ZT / ZH):
+  digital (clean_digital.acc)                                got    85.28  want    85.28  PASS
+  digital s.d. (clean_digital.std)                           got     0.00  want     0.00  PASS
+  under-twin forecast (clean_under_twin.acc)                 got     8.65  want     8.65  PASS
+  chain (clean_hardware.acc)                                 got     6.06  want     6.06  PASS
+  chain s.d. (clean_hardware.std)                            got     0.08  want     0.08  PASS
+GTSRB row 'twin-trained' (weights ZT_L3; eval modes ZT / ZH):
+  digital (twin_digital.acc)                                 got    87.08  want    87.08  PASS
+  chain (twin_hardware.acc)                                  got    75.13  want    75.13  PASS
+  chain s.d. (twin_hardware.std)                             got     0.18  want     0.18  PASS
+Cross-check: digital column == training-time accuracy of the same
+checkpoint (weights/train_summary.json, acc in [0,1] x 100):
+  MZC_L3 (MNIST clean, mode ZC)                              got    95.77  want    95.77  PASS
+  MZT_L3 (MNIST twin,  mode ZT)                              got    94.60  want    94.60  PASS
+  ZC_L3  (GTSRB clean, mode ZC)                              got    85.28  want    85.28  PASS
+  ZT_L3  (GTSRB twin,  mode ZT)                              got    87.08  want    87.08  PASS
+Caption claim 'mean +- 1 s.d. over five noise realizations':
+  every entry of results_summary.json has repeats == 5       PASS
+  twin_2x2.py main() default repeats=5 (chain cells)         PASS
+  twin_2x2.py chain cells use mode ZH with repeats=repeats   PASS
+  twin_2x2.py digital/forecast cells deterministic (repeats=1) PASS
+
+RESULT: 24 passed, 0 failed

@@ -1,0 +1,76 @@
+{
+ "MNIST": {
+  "rows": [
+   {
+    "pass_index": 1,
+    "dim_in": 784,
+    "drive_dBm": -10.0,
+    "tone_snr_dB": 48.97
+   },
+   {
+    "pass_index": 2,
+    "dim_in": 100,
+    "drive_dBm": -33.94,
+    "tone_snr_dB": 33.97
+   },
+   {
+    "pass_index": 3,
+    "dim_in": 64,
+    "drive_dBm": -58.02,
+    "tone_snr_dB": 11.83
+   },
+   {
+    "pass_index": 4,
+    "dim_in": 64,
+    "drive_dBm": -84.46,
+    "tone_snr_dB": -14.61
+   }
+  ],
+  "block_efficiency": [
+   2.255,
+   2.181,
+   1.267
+  ]
+ },
+ "GTSRB": {
+  "rows": [
+   {
+    "pass_index": 1,
+    "dim_in": 3072,
+    "drive_dBm": -10.0,
+    "tone_snr_dB": 43.04
+   },
+   {
+    "pass_index": 2,
+    "dim_in": 128,
+    "drive_dBm": -34.27,
+    "tone_snr_dB": 32.57
+   },
+   {
+    "pass_index": 3,
+    "dim_in": 128,
+    "drive_dBm": -58.48,
+    "tone_snr_dB": 8.36
+   },
+   {
+    "pass_index": 4,
+    "dim_in": 128,
+    "drive_dBm": -85.16,
+    "tone_snr_dB": -18.31
+   }
+  ],
+  "block_efficiency": [
+   2.091,
+   2.115,
+   1.202
+  ]
+ },
+ "settings": {
+  "cl_pass_dB": 7.47,
+  "boost_dB": 18.5,
+  "k_ED_per_V": 208.7,
+  "R_v_ohm": 3500.0,
+  "step_down_loss_dB": 1.0,
+  "first_pass_dBm": -10.0
+ }
+}

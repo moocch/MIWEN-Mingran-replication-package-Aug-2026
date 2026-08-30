@@ -1,0 +1,109 @@
+========================================================================
+Supplementary Note 7 -- time-serial campaign: verification
+========================================================================
+
+[1] Ridge-count sweep of the serial twin (S7.2)
+
+[1a] PASS  K grid [0, 1, 2, 3, 5, 7, 10, 15, 20, 30]
+[1b K=0] PASS  held-out 6.9046 dB -> quoted 6.90
+[1b K=1] PASS  held-out 4.0329 dB -> quoted 4.03
+[1b K=2] PASS  held-out 3.5033 dB -> quoted 3.50
+[1b K=3] PASS  held-out 3.0882 dB -> quoted 3.09
+[1b K=5] PASS  held-out 2.4444 dB -> quoted 2.44
+[1b K=7] PASS  held-out 0.4572 dB -> quoted 0.46
+[1b K=10] PASS  held-out 0.2881 dB -> quoted 0.29
+[1b K=15] PASS  held-out 0.1910 dB -> quoted 0.19
+[1b K=20] PASS  held-out 0.1522 dB -> quoted 0.15
+[1b K=30] PASS  held-out 0.0628 dB -> quoted 0.06
+[1c] PASS  three-repeat repeatability floor 0.01519 dB -> quoted 0.015
+
+[2] Fielded K=20 surface: held-out RMSE recompute (S7.2)
+
+[2a] PASS  product-dominated region: 520 clean cells, 102 held out (deterministic rng(9) split shared by fit and sweep)
+[2b] PASS  recomputed held-out 0.12446 dB == stored rmse_holdout 0.12446 (exact function evaluation)
+[2c] PASS  -> quoted '(held-out 0.12 dB)' for the fielded K=20 surface
+[2d] PASS  fielded twin: K=20, gates {'G1': True, 'G2': True, 'G3': True}
+[2e] PASS  product-term-only evaluation 0.12446 dB: the fielded model's per-port feedthrough terms are negligible in-region
+
+FLAG RESOLUTION -- sweep says 0.15 dB at K=20, SI says the fielded K=20
+surface has held-out 0.12 dB.  Both numbers are 20%-held-out RMSE on the
+IDENTICAL data and IDENTICAL 102-cell holdout split (checks 2a/2b): not
+a different split, and not the feedthrough terms (check 2e).  They are
+two different FITS of the same K=20 model family: twin_ksweep.py re-fits
+from scratch at every K with a leaner staged budget (3-parameter physics
+stage, max_nfev 800/2500/1500) while the fielded serial_twin_fit.py used
+a 4-start 5-parameter physics stage and larger budgets (2000/3000/2000).
+An 83-parameter tanh-ridge least-squares has many near-degenerate local
+minima; the sweep's K=20 refit landed at 0.152 dB, the fielded fit at
+0.124 dB.  Re-running both staged fits during archiving (scipy 1.x on
+the archive machine) landed at 0.115 and 0.138 dB respectively --
+optimizer-trajectory scatter of ~0.03 dB at fixed capacity, an order of
+magnitude above the 0.015-dB repeat floor and immaterial to the sweep's
+conclusion (capacity saturates at K ~ 20-30).  The SI's parenthetical
+quotes the fielded fit's own number, which check 2b reproduces exactly
+from archived bytes.
+
+[3] Drive-ladder quintet (S7.3)
+
+[3a] PASS  256 pairs per capture; 4 captures (2 draws x 2 repeats) x 5 drives archived
+[3b (-9,-9)] PASS  mean rel. linear-fit residual 0.2078 -> quoted 0.21 (per capture: 0.219, 0.218, 0.199, 0.196)
+[3b (-3,-3)] PASS  mean rel. linear-fit residual 0.4074 -> quoted 0.41 (per capture: 0.424, 0.424, 0.391, 0.391)
+[3b (0,0)] PASS  mean rel. linear-fit residual 0.4987 -> quoted 0.50 (per capture: 0.517, 0.516, 0.481, 0.481)
+[3b (+3,+3)] PASS  mean rel. linear-fit residual 0.5758 -> quoted 0.58 (per capture: 0.592, 0.592, 0.560, 0.560)
+[3b (+7,+7)] PASS  mean rel. linear-fit residual 0.6565 -> quoted 0.66 (per capture: 0.668, 0.668, 0.645, 0.645)
+
+[4] Amplitude-resolved ENOB at (0,0) (S7.3)
+
+    per-capture naive bits: [2.532, 2.532, 2.645, 2.644]
+    per-capture twin  bits: [4.385, 4.384, 4.263, 4.262]
+[4a] PASS  overall raw ENOB 2.588 +/- 0.056 bits -> quoted 2.59 +/- 0.06
+[4b] PASS  overall twin-inverted ENOB 4.324 +/- 0.061 bits -> quoted 4.32 +/- 0.06
+[4c] PASS  pooled 8-bin raw endpoints 6.455 / 2.119 bits -> quoted 6.5 / 2.1
+[4d] PASS  pooled 8-bin twin-inverted endpoints 9.707 / 3.472 bits -> quoted 9.7 / 3.5
+    (note: 07_.../serial_enob_00_20260824.json is the EARLIER single-capture
+     diagnostic analysis -- 6.62/2.06 -> 9.79/3.24, overall 2.53 -> 4.38 bits;
+     the SI quotes the four-capture Stage-A statistics recomputed here)
+
+[5] Hardware N=600 headline and pinned comparators
+
+[5a] PASS  clean arm hardware: 34/600 = 5.67% -> quoted 5.67
+[5b] PASS  twin (hardware-aware) arm: 591/600 = 98.50% -> quoted 98.50
+[5c] PASS  both arms ran the identical image set = frozen battery[0:600]
+[5d] PASS  fielded 15-epoch checkpoint under twin forward, full digital test set: 98.56 -> quoted 98.56 (S7.4)
+[5e] PASS  pinned digital twin-under-twin pooled 295+296 = 591/600 = 98.50% -- coincides with the measured 98.50
+[5f] PASS  seg-2 pins: clean-ideal 300/300, clean-under-twin 3/300 (twin predicted the clean collapse before hardware)
+[5g] PASS  verify_accuracy.py (archived audit script) runs end-to-end and prints 5.67% / 98.50% (its output: verify_accuracy_output.txt)
+
+[6] Archived metadata and pre-registration facts
+
+[6a] PASS  stationA meta chain = 'IF +10dB pads (2x5dB post-mixer)' (10 dB IF padding, no receive gain -- S6.1/S7 chain statement)
+[6b] PASS  drive ladder points archived as commanded: (-9,-9)/(-3,-3)/(0,0)/(+3,+3)/(+7,+7) dBm
+[6c] PASS  pre-registration record: eight consecutive sessions, packtest |g| 0.1155-0.1173 at (0,0)
+[6d] PASS  gain spread (0.1173-0.1155)/0.1155 = 1.56% -> quoted 'within 1.6%'
+[6e] PASS  r3plus MAC count 28^2*32*(5*5*3) + 10^2*64*(5*5*32) + 128*1600 + 43*128 = 7,211,904 -> quoted 7,211,904 slots per image
+[6f] PASS  7,211,904 slots x 32 samples / 10 MS/s = 23.1 s -> quoted ~23 s of slot time per image (TSLOT=32 in serial_nn_runner.py)
+
+DOCUMENTED (session-log-only claims of S7.1/S7.4/S7.5; sources are the
+run logs and audit report at the read-only source archive, listed in
+README.md -- not re-derivable from the arrays copied here)
+  - Pack-test gate: fitted link gain vs frozen reference 0.1155 within
+    +/-20%; linear-residual shape in [0.30, 0.75]; chain gate band from
+    the reference diagnostic; sync-margin floor 50 (typical ~1,700).
+    Gate constants: 04_hardware_test_code/serial_nn_runner.py (source);
+    per-session values: serial_*.log files and
+    00_report_and_audit/serial_run_audit.tex (pack-test repeats
+    0.1155/0.1160/0.1162/0.1171 quoted there).
+  - No accuracy gates on either arm (prespec verdict bands, archived
+    here in 00_report_and_audit/, apply to the -10/-24 extension; the
+    (0,0) campaign pre-registration is in the audit report).
+  - Training-budget asymmetry (S7.4): 150-epoch clean checkpoint vs
+    15-epoch twin sprint (~2.9 h); the 60-epoch sibling reaching 99.07
+    under the twin forward lives in 03_training_results/
+    train_serial_twin.log + weights_twin_60ep_sibling/ (source).
+  - Twin surface evaluated from a 256^2 bilinear table, interpolation
+    error <= 0.07 dB (audit report: max deviation 0.069 dB).
+  - ~100 s wall clock per image; ~8.5 h of rig time per 300-image half,
+    disjoint sessions on four days (session logs, ~30,400 s per half).
+========================================================================
+RESULT: ALL ASSERTIONS PASSED
+========================================================================

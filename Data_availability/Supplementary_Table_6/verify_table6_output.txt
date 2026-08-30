@@ -1,0 +1,68 @@
+==============================================================================
+Supplementary Table 6 (tab:analogablation) -- training ablation,
+simulated chain -- verification against hardware_aware_ablation.json
+==============================================================================
+[source] hardware_aware_ablation.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\supp_tables\table6_training_ablation\data\hardware_aware_ablation.json
+[source] results_summary.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\_shared_fully_analog_simulation\results\results_summary.json
+
+MNIST twin + link noise  (JSON key 'MZ_L3', label 'MNIST  hardware-aware'):
+  digital (digital_pct)                                      got    96.07  want    96.07  PASS
+  chain (analog_pct)                                         got    95.62  want    95.62  PASS
+  chain s.d. (analog_std)                                    got     0.09  want     0.09  PASS
+  drop (drop_pts)                                            got     0.45  want     0.45  PASS
+  drop as printed in the SI table                            got     0.45  want     0.45  PASS
+  drop == digital - chain (2-dec rounding)                   PASS
+MNIST link noise, no twin  (JSON key 'MZD_L3_nohw', label 'MNIST  no-hw, noise-free'):
+  digital (digital_pct)                                      got    96.03  want    96.03  PASS
+  chain (analog_pct)                                         got    94.20  want    94.20  PASS
+  chain s.d. (analog_std)                                    got     0.15  want     0.15  PASS
+  drop (drop_pts)                                            got     1.83  want     1.83  PASS
+  drop as printed in the SI table                            got     1.83  want     1.83  PASS
+  drop == digital - chain (2-dec rounding)                   PASS
+MNIST ideal square law  (JSON key 'MZI_L3_ideal', label 'MNIST  no-hw, ideal square'):
+  digital (digital_pct)                                      got    95.77  want    95.77  PASS
+  chain (analog_pct)                                         got    31.97  want    31.97  PASS
+  chain s.d. (analog_std)                                    got     0.23  want     0.23  PASS
+  drop (drop_pts)                                            got    63.80  want    63.80  PASS
+  drop as printed in the SI table                            got    63.80  want    63.80  PASS
+  drop == digital - chain (2-dec rounding)                   PASS
+GTSRB twin + link noise  (JSON key 'Z_L3', label 'GTSRB  hardware-aware'):
+  digital (digital_pct)                                      got    88.29  want    88.29  PASS
+  chain (analog_pct)                                         got    86.26  want    86.26  PASS
+  chain s.d. (analog_std)                                    got     0.13  want     0.13  PASS
+  drop (drop_pts)                                            got     2.03  want     2.03  PASS
+  drop as printed in the SI table                            got     2.03  want     2.03  PASS
+  drop == digital - chain (2-dec rounding)                   PASS
+GTSRB link noise, no twin  (JSON key 'ZD_L3_nohw', label 'GTSRB  no-hw, noise-free'):
+  digital (digital_pct)                                      got    89.19  want    89.19  PASS
+  chain (analog_pct)                                         got    65.70  want    65.70  PASS
+  chain s.d. (analog_std)                                    got     0.17  want     0.17  PASS
+  drop (drop_pts)                                            got    23.49  want    23.49  PASS
+  drop as printed in the SI table                            got    23.50  want    23.50  PASS
+  drop == digital - chain (2-dec rounding)                   PASS
+GTSRB ideal square law  (JSON key 'ZI_L3_ideal', label 'GTSRB  no-hw, ideal square'):
+  digital (digital_pct)                                      got    85.28  want    85.28  PASS
+  chain (analog_pct)                                         got     8.16  want     8.16  PASS
+  chain s.d. (analog_std)                                    got     0.35  want     0.35  PASS
+  drop (drop_pts)                                            got    77.12  want    77.12  PASS
+  drop as printed in the SI table                            got    77.10  want    77.10  PASS
+  drop == digital - chain (2-dec rounding)                   PASS
+Cross-checks against results_summary.json (same release, repeats=5):
+  tag MZ_L3 chain acc                                        got    95.62  want    95.62  PASS
+  tag MZ_L3 chain std                                        got     0.09  want     0.09  PASS
+  tag MZD_L3 (weights MZ_L3, mode ZD) = MNIST digital        got    96.07  want    96.07  PASS
+  tag Z_L3 chain acc                                         got    86.26  want    86.26  PASS
+  tag Z_L3 chain std                                         got     0.13  want     0.13  PASS
+  tag ZD_L3 (weights Z_L3, mode ZD) = GTSRB digital          got    88.29  want    88.29  PASS
+  MZ_L3 / Z_L3 evaluated with repeats == 5                   PASS
+Cross-checks against weights/train_summary.json (digital baselines
+of the ablation checkpoints = their training-time accuracy):
+  MZD_L3_nohw (mode ZD)                                      got    96.03  want    96.03  PASS
+  MZI_L3_ideal (mode ZI)                                     got    95.77  want    95.77  PASS
+  ZD_L3_nohw (mode ZD)                                       got    89.19  want    89.19  PASS
+  ZI_L3_ideal (mode ZI)                                      got    85.28  want    85.28  PASS
+Protocol ('five noise realizations', chain evaluation):
+  reproduce.py: def ablation(repeats=5)                      PASS
+  reproduce.py: chain column evaluated under mode 'Z', digital under ZD/ZI (1 draw) PASS
+
+RESULT: 49 passed, 0 failed

@@ -1,0 +1,38 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Mingran Jia, Sri Krishna Vadlamani, Kfir Sulimany, Zhihui Gao,
+Hanfeng Wang, Tingjun Chen, Dirk Englund
+
+This license covers the DATA, FIGURES and DOCUMENTATION in this repository —
+including but not limited to *.npz, *.npy, *.pt, *.json, *.csv, *.txt, *.log,
+*.png, *.svg, *.pdf and *.md files. The source code is licensed separately
+under the MIT License — see LICENSE.
+
+You are free to:
+
+  Share  — copy and redistribute the material in any medium or format
+  Adapt  — remix, transform, and build upon the material for any purpose,
+           even commercially
+
+under the following term:
+
+  Attribution — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your
+  use.
+
+Please attribute by citing the associated manuscript:
+
+  M. Jia, S. K. Vadlamani, K. Sulimany, Z. Gao, H. Wang, T. Chen and
+  D. Englund, "Machine intelligence on wireless edge networks" (2026).
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+THIRD-PARTY DATA. The GTSRB (German Traffic Sign Recognition Benchmark) and
+MNIST caches redistributed in this repository are derived from their original
+public distributions and remain subject to those datasets' own terms of use.
+The license above applies to this work's own measured and simulated data, not
+to those upstream datasets.
+
+THE MATERIAL IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

@@ -1,0 +1,32 @@
+tag,weights,dataset,mode,L,dims,accuracy_pct,std_pct,repeats,n_test,description
+MZ_L3,MZ_L3,mnist,Z,3,784-100-64-10,95.62,0.09,5,10000,"same weights, fully analog chain"
+MD_L3,MD_L3,mnist,D,3,784-100-64-10,96.05,0.09,5,10000,"digital protocol, Eq. (recirc)"
+MF_L3,MF_L3,mnist,F,3,784-100-64-10,95.58,0.0,5,10000,floating-point reference
+MO_L3,MO_L3,mnist,O,3,784-100-64-10,93.18,0.07,5,10000,linear-cascade control
+MHa_L3,MHa_L3,mnist,Ha,3,784-100-64-10,92.38,0.1,5,10000,"passive cascade, no activation"
+MZ_L2,MZ_L2,mnist,Z,2,784-100-10,95.79,0.06,5,10000,"same weights, fully analog chain, L = 2"
+MD_L2,MD_L2,mnist,D,2,784-100-10,96.77,0.06,5,10000,"digital protocol, L = 2"
+MZ_L4,MZ_L4,mnist,Z,4,784-100-64-64-10,16.27,0.17,5,10000,"analog recirculation, L = 4 (out of budget)"
+Z_L3,,gtsrb,Z,3,3072-128-128-43,86.26,0.13,5,12630,ultra-low-power analog recirculation
+D_L3,,gtsrb,D,3,3072-128-128-43,86.71,0.07,5,12630,digital protocol
+H_L3,,gtsrb,H,3,3072-128-128-43,86.08,0.07,5,12630,"passive cascade, no activation"
+O_L3,,gtsrb,O,3,3072-128-128-43,86.94,0.16,5,12630,linear-cascade control
+Z_L2,,gtsrb,Z,2,3072-128-43,87.22,0.22,5,12630,"analog recirculation, L = 2"
+D_L2,,gtsrb,D,2,3072-128-43,87.36,0.18,5,12630,"digital protocol, L = 2"
+MZI_L3,MZ_L3,mnist,ZI,3,784-100-64-10,47.72,0.0,5,10000,"same weights, ideal square-law activation"
+MZI_L2,MZ_L2,mnist,ZI,2,784-100-10,89.96,0.0,5,10000,"same weights, digital execution, L = 2"
+MZD_L3,MZ_L3,mnist,ZD,3,784-100-64-10,96.07,0.0,5,10000,"same weights, digital execution (no link)"
+MZD_L2,MZ_L2,mnist,ZD,2,784-100-10,96.17,0.0,5,10000,"same weights, digital execution, L = 2"
+ZD_L3,Z_L3,gtsrb,ZD,3,3072-128-128-43,88.29,0.0,5,12630,"same weights, digital execution (no link)"
+ZD_L2,Z_L2,gtsrb,ZD,2,3072-128-43,89.71,0.0,5,12630,"same weights, digital execution, L = 2"
+ZI_L3,Z_L3,gtsrb,ZI,3,3072-128-128-43,42.15,0.0,5,12630,"same weights, ideal square-law activation"
+MZH_L3,MZH_L3,mnist,ZH,3,784-100-64-10,93.9,0.1,5,10000,"hardware-aware weights, analog chain"
+MZT_L3d,MZH_L3,mnist,ZT,3,784-100-64-10,94.3,0.0,5,10000,"the same weights, digital execution"
+MZH_L2,MZH_L2,mnist,ZH,2,784-100-10,93.82,0.03,5,10000,"analog chain, L = 2"
+MZT_L2d,MZH_L2,mnist,ZT,2,784-100-10,94.04,0.0,5,10000,"digital execution, L = 2"
+MZH_L4,MZH_L4,mnist,ZH,4,784-100-64-64-10,15.39,0.23,5,10000,"analog chain, L = 4 (out of budget)"
+MZT_L4d,MZH_L4,mnist,ZT,4,784-100-64-64-10,85.02,0.0,5,10000,"digital execution, L = 4"
+ZH_L3,ZH_L3,gtsrb,ZH,3,3072-128-128-43,87.53,0.14,5,12630,"hardware-aware weights, analog chain"
+ZT_L3d,ZH_L3,gtsrb,ZT,3,3072-128-128-43,88.83,0.0,5,12630,"the same weights, digital execution"
+ZH_L2,ZH_L2,gtsrb,ZH,2,3072-128-43,86.81,0.05,5,12630,"analog chain, L = 2"
+ZT_L2d,ZH_L2,gtsrb,ZT,2,3072-128-43,87.68,0.0,5,12630,"digital execution, L = 2"

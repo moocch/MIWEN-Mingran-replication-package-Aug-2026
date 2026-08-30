@@ -1,0 +1,72 @@
+===== S4.1/S4.2: synchronisation quality and frame geometry =====
+[PASS] N=4096: 16384-point symbols, 512-sample CP
+[PASS] N=4096: subcarrier spacing 610.35 Hz  (fs/L = 610.3516 Hz)
+[PASS] N=4096: output bin k0=6 on the every-3rd-bin grid, +3.66 kHz  (k0*fs/L = 3662.1 Hz)
+[PASS] N=4096: identical geometry ratios across sizes (CP=L/32, gap=L/2)
+[PASS] N=4096: 26 pilot slots interleaved one-per-eight with 200 data slots
+[PASS] N=4096: preamble peak-to-sidelobe ratios in 28.6-31.4  (measured [28.64 29.54])
+[PASS] N=4096: fitted pilot drift slopes < 3.2e-3 rad/slot  (|slope| [0.000576 0.000551])
+[PASS] N=4096: receiver ADC clipping fraction zero
+[PASS] N=65536: 262144-point symbols, 8192-sample CP
+[PASS] N=65536: subcarrier spacing 38.15 Hz  (fs/L = 38.1470 Hz)
+[PASS] N=65536: output bin k0=96 on the every-3rd-bin grid, +3.66 kHz  (k0*fs/L = 3662.1 Hz)
+[PASS] N=65536: identical geometry ratios across sizes (CP=L/32, gap=L/2)
+[PASS] N=65536: 26 pilot slots interleaved one-per-eight with 200 data slots
+[PASS] N=65536: preamble peak-to-sidelobe ratios in 28.6-31.4  (measured [31.43 31.29])
+[PASS] N=65536: fitted pilot drift slopes < 3.2e-3 rad/slot  (|slope| [0.003041 0.003168])
+[PASS] N=65536: receiver ADC clipping fraction zero
+[PASS] acceptance threshold 3 for the sync peak (archived acquisition code)
+[PASS] noise estimated from 4 guard bins at k0+-4, k0+-5 (archived code)
+[PASS] PSR range endpoints quote as 28.6 and 31.4  (min 28.643, max 31.425)
+
+===== S4.2: transmitted combs regenerated from the stored seed =====
+[PASS] N=4096: digital clip commanded at 10-dB PAPR (meta_json)
+[PASS] N=4096: regenerated frame reproduces all 226 stored true inner products  (max |dev| = 1.07e-14)
+[PASS] N=4096: combs occupy ~7.5 MHz = 75% of Nyquist  (span 7.502 MHz, |k|max/(L/2) = 0.7505)
+[PASS] N=4096 LO comb: clipping touches a <0.03% sliver of samples  (samples 0.0191%, energy 0.0045%)
+[PASS] N=4096 RF comb: clipping touches a <0.03% sliver of samples  (samples 0.0206%, energy 0.0051%)
+[PASS] N=65536: digital clip commanded at 10-dB PAPR (meta_json)
+[PASS] N=65536: regenerated frame reproduces all 226 stored true inner products  (max |dev| = 1.27e-13)
+[PASS] N=65536: combs occupy ~7.5 MHz = 75% of Nyquist  (span 7.504 MHz, |k|max/(L/2) = 0.7507)
+[PASS] N=65536 LO comb: clipping touches a <0.03% sliver of samples  (samples 0.0193%, energy 0.0050%)
+[PASS] N=65536 RF comb: clipping touches a <0.03% sliver of samples  (samples 0.0196%, energy 0.0053%)
+[NOTE] S4.2 quotes the clip as 'touching 0.006% of samples'; byte-exact regeneration gives touched-SAMPLE fractions 0.0191%, 0.0206%, 0.0193%, 0.0196% (0.019-0.021%) and clipped-ENERGY fractions 0.0045%, 0.0051%, 0.0050%, 0.0053% (0.005%)  (the 0.006% figure matches neither exactly; nearest is the clipped-energy fraction - see README (likely erratum: energy fraction, not samples))
+
+===== S4.3: measured noise floor and sigma2_bin control =====
+[PASS] N=4096: sigma2_bin agrees between operating points within 0.6 dB  (0.351 dB apart)
+[PASS] N=4096: while the data-comb power differs by ~10 dB  (9.88 dB)
+[PASS] N=65536: sigma2_bin agrees between operating points within 0.6 dB  (0.590 dB apart)
+[PASS] N=65536: while the data-comb power differs by ~10 dB  (10.49 dB)
+[PASS] guard-bin SNRs 15.14-15.44 dB (union, three repeats each panel)  (min 15.1414, max 15.4426)
+[PASS] guard-bin SNRs 24.37-25.20 dB (union over both vector lengths)  (min 24.3654, max 25.1992)
+[PASS] N=65536 alone: 25.03-25.20 dB  (min 25.0315, max 25.1992)
+
+===== S4.3: bias-corrected repeat decomposition =====
+[PASS] N=65536: optimized npz true values == raw npz c_true_norm (archives agree)
+[PASS] N=65536: c_hat_before_reps == raw c_hat_reps (raw-side residuals identical in both archives)
+[PASS] N=65536 15 dB: corrected sigma-hat = 0.0324  (computed 0.0324)
+[PASS] N=65536 15 dB: closed-form floor = 0.0331  (computed 0.0331)
+[PASS] N=65536 15 dB: reproducible |d-hat| = 0.0156  (computed 0.0156)
+[PASS] N=65536 15 dB: |d|^2 carries 18.9% of corrected residual power  (computed 18.9%)
+[PASS] N=65536 15 dB: uncorrected deterministic fraction 74.6% (from the raw npz repeats)  (computed 74.6%)
+[PASS] N=65536 25 dB: corrected sigma-hat = 0.0108  (computed 0.0108)
+[PASS] N=65536 25 dB: closed-form floor = 0.0107  (computed 0.0107)
+[PASS] N=65536 25 dB: reproducible |d-hat| = 0.0134  (computed 0.0134)
+[PASS] N=65536 25 dB: |d|^2 carries 60.6% of corrected residual power  (computed 60.6%)
+[PASS] N=65536 25 dB: uncorrected deterministic fraction 96.3% (from the raw npz repeats)  (computed 96.3%)
+[PASS] N=4096: optimized npz true values == raw npz c_true_norm (archives agree)
+[PASS] N=4096: c_hat_before_reps == raw c_hat_reps (raw-side residuals identical in both archives)
+[PASS] N=4096 15 dB: reproducible |d-hat| = 0.0163  (computed 0.0163)
+[PASS] N=4096 15 dB: |d|^2 carries 22.0% of corrected residual power  (computed 22.0%)
+[PASS] N=4096 15 dB: uncorrected deterministic fraction 79.9% (from the raw npz repeats)  (computed 79.9%)
+[PASS] N=4096 25 dB: reproducible |d-hat| = 0.0158  (computed 0.0158)
+[PASS] N=4096 25 dB: |d|^2 carries 71.5% of corrected residual power  (computed 71.5%)
+[PASS] N=4096 25 dB: uncorrected deterministic fraction 97.3% (from the raw npz repeats)  (computed 97.3%)
+[PASS] corrected random component sits at 0.98x / 1.01x the measured floor  (ratios 0.9790, 1.0060)
+
+===== S4.4: controls on the out-of-sample correction =====
+[PASS] twin template vs measured residuals: rho = 0.79-0.91 across all four operating points  (N=65536 15 dB: 0.787; N=65536 25 dB: 0.914; N=4096 15 dB: 0.807; N=4096 25 dB: 0.904)
+[PASS] twin compression ratio at -3 dBm LO drive = 0.24  (computed 0.2445)
+
+All 59 checks passed.
+1 documented item(s) NOT asserted (see [NOTE] above and README.md).

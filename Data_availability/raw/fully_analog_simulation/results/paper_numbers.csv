@@ -1,0 +1,50 @@
+location,quantity,value,produced_by,weights,model
+Fig. 3 / text (MNIST),pass 1 drive,-10.0 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 1 tone SNR,48.97 dB,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 2 drive,-33.94 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 2 tone SNR,33.97 dB,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 3 drive,-58.02 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 3 tone SNR,11.83 dB,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 4 drive,-84.46 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (MNIST),pass 4 tone SNR,-14.61 dB,reproduce.py budget,,plan_Z
+text (MNIST),block efficiency,2.255 %,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 1 drive,-10.0 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 1 tone SNR,43.04 dB,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 2 drive,-34.27 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 2 tone SNR,32.57 dB,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 3 drive,-58.48 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 3 tone SNR,8.36 dB,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 4 drive,-85.16 dBm,reproduce.py budget,,plan_Z
+Fig. 3 / text (GTSRB),pass 4 tone SNR,-18.31 dB,reproduce.py budget,,plan_Z
+text (GTSRB),block efficiency,2.091 %,reproduce.py budget,,plan_Z
+Methods,cl_pass_dB,7.47,reproduce.py budget,,constants
+Methods,boost_dB,18.5,reproduce.py budget,,constants
+Methods,k_ED_per_V,208.7,reproduce.py budget,,constants
+Methods,R_v_ohm,3500.0,reproduce.py budget,,constants
+Methods,step_down_loss_dB,1.0,reproduce.py budget,,constants
+Methods,first_pass_dBm,-10.0,reproduce.py budget,,constants
+Fig. 4 MNIST digital,accuracy,94.3 +- 0.0 %,reproduce.py infer,MZH_L3,ZT
+Fig. 4 MNIST analog,accuracy,93.9 +- 0.1 %,reproduce.py infer,MZH_L3,ZH
+Fig. 4 GTSRB digital,accuracy,88.83 +- 0.0 %,reproduce.py infer,ZH_L3,ZT
+Fig. 4 GTSRB analog,accuracy,87.53 +- 0.14 %,reproduce.py infer,ZH_L3,ZH
+text MNIST L=2 digital,accuracy,94.04 +- 0.0 %,reproduce.py infer,MZH_L2,ZT
+text MNIST L=2 analog,accuracy,93.82 +- 0.03 %,reproduce.py infer,MZH_L2,ZH
+text GTSRB L=2 digital,accuracy,87.68 +- 0.0 %,reproduce.py infer,ZH_L2,ZT
+text GTSRB L=2 analog,accuracy,86.81 +- 0.05 %,reproduce.py infer,ZH_L2,ZH
+text MNIST L=4 digital,accuracy,85.02 +- 0.0 %,reproduce.py infer,MZH_L4,ZT
+text MNIST L=4 analog,accuracy,15.39 +- 0.23 %,reproduce.py infer,MZH_L4,ZH
+text MNIST digital protocol,accuracy,96.05 +- 0.09 %,reproduce.py infer,MD_L3,D
+text MNIST float reference,accuracy,95.58 +- 0.0 %,reproduce.py infer,MF_L3,F
+text MNIST linear control,accuracy,93.18 +- 0.07 %,reproduce.py infer,MO_L3,O
+text MNIST no activation,accuracy,92.38 +- 0.1 %,reproduce.py infer,MHa_L3,Ha
+text GTSRB digital protocol,accuracy,86.71 +- 0.07 %,reproduce.py infer,D_L3,D
+Table I (MNIST),clean_digital,95.77 +- 0.0 %,twin_2x2.py,ZC_L3,ZC
+Table I (MNIST),clean_under_twin,18.25 +- 0.0 %,twin_2x2.py,ZC_L3,ZT
+Table I (MNIST),clean_hardware,15.77 +- 0.3 %,twin_2x2.py,ZC_L3,ZH
+Table I (MNIST),twin_digital,94.6 +- 0.0 %,twin_2x2.py,ZT_L3,ZT
+Table I (MNIST),twin_hardware,92.62 +- 0.08 %,twin_2x2.py,ZT_L3,ZH
+Table I (GTSRB),clean_digital,85.28 +- 0.0 %,twin_2x2.py,ZC_L3,ZC
+Table I (GTSRB),clean_under_twin,8.65 +- 0.0 %,twin_2x2.py,ZC_L3,ZT
+Table I (GTSRB),clean_hardware,6.06 +- 0.08 %,twin_2x2.py,ZC_L3,ZH
+Table I (GTSRB),twin_digital,87.08 +- 0.0 %,twin_2x2.py,ZT_L3,ZT
+Table I (GTSRB),twin_hardware,75.13 +- 0.18 %,twin_2x2.py,ZT_L3,ZH

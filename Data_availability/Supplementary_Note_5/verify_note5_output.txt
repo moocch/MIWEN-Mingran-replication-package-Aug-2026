@@ -1,0 +1,142 @@
+========================================================================
+Supplementary Note 5 -- numeric verification
+archive: <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\_shared_fully_analog_simulation
+========================================================================
+
+--- S5.1  per-pass loss (datasheet constants) ---
+[PASS] 6.65 + 0.82 = 7.47 dB per-pass loss
+       got 7.470000000000001  vs tex/archive 7.47  (tol 1e-09)
+[PASS] archive settings cl_pass_dB
+       got 7.47  vs tex/archive 7.47
+
+--- S5.2  Eq. S15 passive boost bound ---
+[PASS] R_in <= Q/(w C) = 10.6 kOhm
+       got 10.61032953945969  vs tex/archive 10.6  (tol 0.05)
+[PASS] boost bound 19.3 dB after 1 dB IL
+       got 19.257288725862036  vs tex/archive 19.3  (tol 0.05)
+[PASS] adopted boost (archive) = 18.5 dB <= bound
+       got 1.0  vs tex/archive 1.0
+[PASS] archive settings boost_dB
+       got 18.5  vs tex/archive 18.5
+
+--- S5.3/S5.4  Eq. S16 detector transfer and knee ---
+[PASS] archive k_ED_per_V
+       got 208.7  vs tex/archive 208.7
+[PASS] knee v* = 1/(2 k_ED) = 2.4 mV
+       got 2.3957834211787254  vs tex/archive 2.4  (tol 0.005)
+[PASS] Eq. S16 small-signal limit -> k_ED v^2 (ratio -> 1)
+       got 0.9997913290342009  vs tex/archive 1.0  (tol 0.001)
+
+--- S5.5  Eq. S18 output interface ---
+[PASS] R_v = 50 * 10^1.85 ~ 3.5 kOhm
+       got 3.5397289219206907  vs tex/archive 3.5  (tol 0.05)
+[PASS] archive R_v_ohm = 3500 (conservative ~3.5 kOhm)
+       got 3500.0  vs tex/archive 3500.0
+[PASS] eta = 4 R0 Rv/(R0+Rv)^2 ~ 0.056
+       got 0.05554453481452093  vs tex/archive 0.056  (tol 0.0005)
+[PASS] eta in dB ~ -12.5
+       got -12.553586660959313  vs tex/archive -12.5  (tol 0.06)
+[PASS] n^2 ~ R_v/R_0 ~ 70
+       got 70.0  vs tex/archive 70.0
+[PASS] archive step_down_loss_dB (the 'further 1 dB')
+       got 1.0  vs tex/archive 1.0
+
+--- S5.6  block efficiency and the level ladder ---
+[PASS] MNIST first-pass block efficiency 2.255% (tex '2.3%')
+       got 2.3  vs tex/archive 2.3
+[PASS] GTSRB first-pass block efficiency 2.091% (tex '2.1%')
+       got 2.1  vs tex/archive 2.1
+[PASS] archived MNIST block_efficiency[0]
+       got 2.255  vs tex/archive 2.255
+[PASS] archived GTSRB block_efficiency[0]
+       got 2.091  vs tex/archive 2.091
+[PASS] MNIST ladder rounds to -10/-34/-58 dBm
+       got True  vs tex/archive True
+[PASS] GTSRB ladder rounds to -10/-34/-58 dBm
+       got True  vs tex/archive True
+[PASS] fourth pass near -84 dBm (MNIST row 4)
+       got -84.46  vs tex/archive -84.0  (tol 0.5)
+[PASS] MNIST 4th pass below -73.6 dBm floor
+       got 1.0  vs tex/archive 1.0
+[PASS] GTSRB 4th pass below -73.6 dBm floor
+       got 1.0  vs tex/archive 1.0
+[PASS] MNIST eff[0] = next/(prev * 10^(-7.47/10))
+       got 2.2542392121524304  vs tex/archive 2.255  (tol 0.005)
+[PASS] MNIST eff[1] = next/(prev * 10^(-7.47/10))
+       got 2.1827299118429977  vs tex/archive 2.181  (tol 0.005)
+[PASS] MNIST eff[2] = next/(prev * 10^(-7.47/10))
+       got 1.2676518658578482  vs tex/archive 1.267  (tol 0.005)
+[PASS] GTSRB eff[0] = next/(prev * 10^(-7.47/10))
+       got 2.0892961308540374  vs tex/archive 2.091  (tol 0.005)
+[PASS] GTSRB eff[1] = next/(prev * 10^(-7.47/10))
+       got 2.118361135248504  vs tex/archive 2.115  (tol 0.005)
+[PASS] GTSRB eff[2] = next/(prev * 10^(-7.47/10))
+       got 1.1994993031493788  vs tex/archive 1.202  (tol 0.005)
+[PASS] MNIST pass 1 SNR law with -73.6 dBm floor
+       got 48.970477014745484  vs tex/archive 48.97  (tol 0.01)
+[PASS] MNIST pass 2 SNR law with -73.6 dBm floor
+       got 33.973637641589875  vs tex/archive 33.97  (tol 0.01)
+[PASS] MNIST pass 3 SNR law with -73.6 dBm floor
+       got 11.83183790175099  vs tex/archive 11.83  (tol 0.01)
+[PASS] MNIST pass 4 SNR law with -73.6 dBm floor
+       got -14.608162098249002  vs tex/archive -14.61  (tol 0.01)
+[PASS] GTSRB pass 1 SNR law with -73.6 dBm floor
+       got 43.03942552799512  vs tex/archive 43.04  (tol 0.01)
+[PASS] GTSRB pass 2 SNR law with -73.6 dBm floor
+       got 32.57153794511118  vs tex/archive 32.57  (tol 0.01)
+[PASS] GTSRB pass 3 SNR law with -73.6 dBm floor
+       got 8.361537945111184  vs tex/archive 8.36  (tol 0.01)
+[PASS] GTSRB pass 4 SNR law with -73.6 dBm floor
+       got -18.318462054888816  vs tex/archive -18.31  (tol 0.01)
+
+--- S5.7  discrete-Schottky boundary (SMS7630) ---
+[PASS] SMS7630 k_ED = 1/(4 n V_T) ~ 9.3 /V (n V_T = 27 mV)
+       got 9.25925925925926  vs tex/archive 9.3  (tol 0.05)
+[PASS] n V_T at n = 1.05, T = 300 K ~ 27 mV
+       got 27.144599775757314  vs tex/archive 27.0  (tol 0.2)
+[PASS] video deficit 20 log10(208.7/9.3) = 27 dB
+       got 27.020790010230375  vs tex/archive 27.0  (tol 0.05)
+[PASS] R_j = 5.1 kOhm caps boost near 16 dB
+       got 16.075701760979364  vs tex/archive 16.0  (tol 0.1)
+
+--- S5.8  per-layer fidelity: quoted drives/SNRs/accuracies ---
+[PASS] GTSRB pass 1 drive -10.0 dBm
+       got -10.0  vs tex/archive -10.0  (tol 0.05)
+[PASS] GTSRB pass 1 tone SNR 43.0 dB
+       got 43.04  vs tex/archive 43.0  (tol 0.05)
+[PASS] GTSRB pass 2 drive -34.3 dBm
+       got -34.27  vs tex/archive -34.3  (tol 0.05)
+[PASS] GTSRB pass 2 tone SNR 32.6 dB
+       got 32.57  vs tex/archive 32.6  (tol 0.05)
+[PASS] GTSRB pass 3 drive -58.5 dBm
+       got -58.48  vs tex/archive -58.5  (tol 0.05)
+[PASS] GTSRB pass 3 tone SNR 8.4 dB
+       got 8.36  vs tex/archive 8.4  (tol 0.05)
+[PASS] ZD_L3 (chain-trained Z_L3 weights, digital execution) = 88.29 %
+       got 88.29  vs tex/archive 88.29
+[PASS]   ... rounds to the tex's 88.3 %
+       got 88.3  vs tex/archive 88.3
+[PASS] ZI_L3 (same weights, ideal square law) = 42.15 %
+       got 42.15  vs tex/archive 42.15
+[PASS]   ... rounds to the tex's 42.2 % (half-up)
+       got 42.2  vs tex/archive 42.2
+[PASS] ZD_L3 and ZI_L3 run the same weights (Z_L3)
+       got True  vs tex/archive True
+[PASS] 'within 1.30 points of digital execution': ZT_L3d - ZH_L3
+       got 1.2999999999999972  vs tex/archive 1.3  (tol 1e-09)
+
+--- cross-check vs Reviewer1_Comment7 c7_activation_numbers ---
+[PASS] c7 v_knee_mV
+       got 2.3957834211787254  vs tex/archive 2.3957834211787254  (tol 1e-09)
+[PASS] c7 boost_ceiling_dB
+       got 19.257288725862036  vs tex/archive 19.257288725862036  (tol 1e-09)
+[PASS] c7 R_Q_kOhm
+       got 10.61032953945969  vs tex/archive 10.61032953945969  (tol 1e-09)
+[PASS] c7 GTSRB ladder == archived ladder
+       got True  vs tex/archive True
+[PASS] c7 block_efficiency == archived
+       got True  vs tex/archive True
+
+========================================================================
+59/59 checks passed
+ALL CHECKS PASSED

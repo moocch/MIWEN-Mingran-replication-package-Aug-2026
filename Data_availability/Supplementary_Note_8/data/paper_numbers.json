@@ -1,0 +1,394 @@
+[
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 1 drive",
+  "value": "-10.0 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 1 tone SNR",
+  "value": "48.97 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 2 drive",
+  "value": "-33.94 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 2 tone SNR",
+  "value": "33.97 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 3 drive",
+  "value": "-58.02 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 3 tone SNR",
+  "value": "11.83 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 4 drive",
+  "value": "-84.46 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (MNIST)",
+  "quantity": "pass 4 tone SNR",
+  "value": "-14.61 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "text (MNIST)",
+  "quantity": "block efficiency",
+  "value": "2.255 %",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 1 drive",
+  "value": "-10.0 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 1 tone SNR",
+  "value": "43.04 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 2 drive",
+  "value": "-34.27 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 2 tone SNR",
+  "value": "32.57 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 3 drive",
+  "value": "-58.48 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 3 tone SNR",
+  "value": "8.36 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 4 drive",
+  "value": "-85.16 dBm",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Fig. 3 / text (GTSRB)",
+  "quantity": "pass 4 tone SNR",
+  "value": "-18.31 dB",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "text (GTSRB)",
+  "quantity": "block efficiency",
+  "value": "2.091 %",
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "plan_Z"
+ },
+ {
+  "location": "Methods",
+  "quantity": "cl_pass_dB",
+  "value": 7.47,
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "constants"
+ },
+ {
+  "location": "Methods",
+  "quantity": "boost_dB",
+  "value": 18.5,
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "constants"
+ },
+ {
+  "location": "Methods",
+  "quantity": "k_ED_per_V",
+  "value": 208.7,
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "constants"
+ },
+ {
+  "location": "Methods",
+  "quantity": "R_v_ohm",
+  "value": 3500.0,
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "constants"
+ },
+ {
+  "location": "Methods",
+  "quantity": "step_down_loss_dB",
+  "value": 1.0,
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "constants"
+ },
+ {
+  "location": "Methods",
+  "quantity": "first_pass_dBm",
+  "value": -10.0,
+  "produced_by": "reproduce.py budget",
+  "weights": "",
+  "model": "constants"
+ },
+ {
+  "location": "Fig. 4 MNIST digital",
+  "quantity": "accuracy",
+  "value": "94.3 +- 0.0 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MZH_L3",
+  "model": "ZT"
+ },
+ {
+  "location": "Fig. 4 MNIST analog",
+  "quantity": "accuracy",
+  "value": "93.9 +- 0.1 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MZH_L3",
+  "model": "ZH"
+ },
+ {
+  "location": "Fig. 4 GTSRB digital",
+  "quantity": "accuracy",
+  "value": "88.83 +- 0.0 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "ZH_L3",
+  "model": "ZT"
+ },
+ {
+  "location": "Fig. 4 GTSRB analog",
+  "quantity": "accuracy",
+  "value": "87.53 +- 0.14 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "ZH_L3",
+  "model": "ZH"
+ },
+ {
+  "location": "text MNIST L=2 digital",
+  "quantity": "accuracy",
+  "value": "94.04 +- 0.0 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MZH_L2",
+  "model": "ZT"
+ },
+ {
+  "location": "text MNIST L=2 analog",
+  "quantity": "accuracy",
+  "value": "93.82 +- 0.03 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MZH_L2",
+  "model": "ZH"
+ },
+ {
+  "location": "text GTSRB L=2 digital",
+  "quantity": "accuracy",
+  "value": "87.68 +- 0.0 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "ZH_L2",
+  "model": "ZT"
+ },
+ {
+  "location": "text GTSRB L=2 analog",
+  "quantity": "accuracy",
+  "value": "86.81 +- 0.05 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "ZH_L2",
+  "model": "ZH"
+ },
+ {
+  "location": "text MNIST L=4 digital",
+  "quantity": "accuracy",
+  "value": "85.02 +- 0.0 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MZH_L4",
+  "model": "ZT"
+ },
+ {
+  "location": "text MNIST L=4 analog",
+  "quantity": "accuracy",
+  "value": "15.39 +- 0.23 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MZH_L4",
+  "model": "ZH"
+ },
+ {
+  "location": "text MNIST digital protocol",
+  "quantity": "accuracy",
+  "value": "96.05 +- 0.09 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MD_L3",
+  "model": "D"
+ },
+ {
+  "location": "text MNIST float reference",
+  "quantity": "accuracy",
+  "value": "95.58 +- 0.0 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MF_L3",
+  "model": "F"
+ },
+ {
+  "location": "text MNIST linear control",
+  "quantity": "accuracy",
+  "value": "93.18 +- 0.07 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MO_L3",
+  "model": "O"
+ },
+ {
+  "location": "text MNIST no activation",
+  "quantity": "accuracy",
+  "value": "92.38 +- 0.1 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "MHa_L3",
+  "model": "Ha"
+ },
+ {
+  "location": "text GTSRB digital protocol",
+  "quantity": "accuracy",
+  "value": "86.71 +- 0.07 %",
+  "produced_by": "reproduce.py infer",
+  "weights": "D_L3",
+  "model": "D"
+ },
+ {
+  "location": "Table I (MNIST)",
+  "quantity": "clean_digital",
+  "value": "95.77 +- 0.0 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZC_L3",
+  "model": "ZC"
+ },
+ {
+  "location": "Table I (MNIST)",
+  "quantity": "clean_under_twin",
+  "value": "18.25 +- 0.0 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZC_L3",
+  "model": "ZT"
+ },
+ {
+  "location": "Table I (MNIST)",
+  "quantity": "clean_hardware",
+  "value": "15.77 +- 0.3 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZC_L3",
+  "model": "ZH"
+ },
+ {
+  "location": "Table I (MNIST)",
+  "quantity": "twin_digital",
+  "value": "94.6 +- 0.0 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZT_L3",
+  "model": "ZT"
+ },
+ {
+  "location": "Table I (MNIST)",
+  "quantity": "twin_hardware",
+  "value": "92.62 +- 0.08 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZT_L3",
+  "model": "ZH"
+ },
+ {
+  "location": "Table I (GTSRB)",
+  "quantity": "clean_digital",
+  "value": "85.28 +- 0.0 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZC_L3",
+  "model": "ZC"
+ },
+ {
+  "location": "Table I (GTSRB)",
+  "quantity": "clean_under_twin",
+  "value": "8.65 +- 0.0 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZC_L3",
+  "model": "ZT"
+ },
+ {
+  "location": "Table I (GTSRB)",
+  "quantity": "clean_hardware",
+  "value": "6.06 +- 0.08 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZC_L3",
+  "model": "ZH"
+ },
+ {
+  "location": "Table I (GTSRB)",
+  "quantity": "twin_digital",
+  "value": "87.08 +- 0.0 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZT_L3",
+  "model": "ZT"
+ },
+ {
+  "location": "Table I (GTSRB)",
+  "quantity": "twin_hardware",
+  "value": "75.13 +- 0.18 %",
+  "produced_by": "twin_2x2.py",
+  "weights": "ZT_L3",
+  "model": "ZH"
+ }
+]

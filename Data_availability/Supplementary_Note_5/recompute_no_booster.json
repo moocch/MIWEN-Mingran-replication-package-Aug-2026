@@ -1,0 +1,134 @@
+{
+ "constants": {
+  "cl_pass_dB": 7.47,
+  "boost_dB": 18.5,
+  "k_ED_per_V": 208.7,
+  "R_v_ohm": 3500.0,
+  "step_down_loss_dB": 1.0,
+  "first_pass_dBm": -10.0,
+  "N_stage": 1,
+  "floor_dBm": -73.6
+ },
+ "variant_L_bookkeeping": {
+  "MNIST": {
+   "drive_dBm": [
+    -10.0,
+    -52.44,
+    -95.02
+   ],
+   "tone_snr_dB": [
+    48.97,
+    15.47,
+    -25.17
+   ],
+   "passes_above_floor": 2,
+   "abs_diff_from_tex_dB": [
+    0.44,
+    0.02
+   ]
+  },
+  "GTSRB": {
+   "drive_dBm": [
+    -10.0,
+    -52.77,
+    -95.48
+   ],
+   "tone_snr_dB": [
+    43.04,
+    14.07,
+    -28.64
+   ],
+   "passes_above_floor": 2,
+   "abs_diff_from_tex_dB": [
+    0.77,
+    0.48
+   ]
+  }
+ },
+ "variant_A_recursion_Rv3500": {
+  "MNIST": {
+   "drive_dBm": [
+    -10.0,
+    -52.42,
+    -106.99
+   ],
+   "tone_snr_dB": [
+    48.97,
+    15.5,
+    -37.14
+   ],
+   "passes_above_floor": 2,
+   "abs_diff_from_tex_dB": [
+    0.42,
+    11.99
+   ]
+  },
+  "GTSRB": {
+   "drive_dBm": [
+    -10.0,
+    -52.74,
+    -107.93
+   ],
+   "tone_snr_dB": [
+    43.04,
+    14.1,
+    -41.09
+   ],
+   "passes_above_floor": 2,
+   "abs_diff_from_tex_dB": [
+    0.74,
+    12.93
+   ]
+  }
+ },
+ "variant_B_recursion_Rv50": {
+  "MNIST": {
+   "drive_dBm": [
+    -10.0,
+    -33.96,
+    -58.37
+   ],
+   "tone_snr_dB": [
+    48.97,
+    33.95,
+    11.48
+   ],
+   "passes_above_floor": 3,
+   "abs_diff_from_tex_dB": [
+    18.04,
+    36.63
+   ]
+  },
+  "GTSRB": {
+   "drive_dBm": [
+    -10.0,
+    -34.29,
+    -58.96
+   ],
+   "tone_snr_dB": [
+    43.04,
+    32.55,
+    7.88
+   ],
+   "passes_above_floor": 3,
+   "abs_diff_from_tex_dB": [
+    17.71,
+    36.04
+   ]
+  }
+ },
+ "verdict": {
+  "variant_L": {
+   "reproduces_52_95": true,
+   "at_most_two_passes": true
+  },
+  "variant_A": {
+   "reproduces_52_95": false,
+   "at_most_two_passes": true
+  },
+  "variant_B": {
+   "reproduces_52_95": false,
+   "at_most_two_passes": false
+  }
+ }
+}

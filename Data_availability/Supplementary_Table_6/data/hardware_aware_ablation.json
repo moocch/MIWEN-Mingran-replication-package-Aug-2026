@@ -1,0 +1,50 @@
+{
+ "MZ_L3": {
+  "label": "MNIST  hardware-aware",
+  "dataset": "mnist",
+  "digital_pct": 96.07,
+  "analog_pct": 95.62,
+  "analog_std": 0.09,
+  "drop_pts": 0.45
+ },
+ "MZD_L3_nohw": {
+  "label": "MNIST  no-hw, noise-free",
+  "dataset": "mnist",
+  "digital_pct": 96.03,
+  "analog_pct": 94.2,
+  "analog_std": 0.15,
+  "drop_pts": 1.83
+ },
+ "MZI_L3_ideal": {
+  "label": "MNIST  no-hw, ideal square",
+  "dataset": "mnist",
+  "digital_pct": 95.77,
+  "analog_pct": 31.97,
+  "analog_std": 0.23,
+  "drop_pts": 63.8
+ },
+ "Z_L3": {
+  "label": "GTSRB  hardware-aware",
+  "dataset": "gtsrb",
+  "digital_pct": 88.29,
+  "analog_pct": 86.26,
+  "analog_std": 0.13,
+  "drop_pts": 2.03
+ },
+ "ZD_L3_nohw": {
+  "label": "GTSRB  no-hw, noise-free",
+  "dataset": "gtsrb",
+  "digital_pct": 89.19,
+  "analog_pct": 65.7,
+  "analog_std": 0.17,
+  "drop_pts": 23.49
+ },
+ "ZI_L3_ideal": {
+  "label": "GTSRB  no-hw, ideal square",
+  "dataset": "gtsrb",
+  "digital_pct": 85.28,
+  "analog_pct": 8.16,
+  "analog_std": 0.35,
+  "drop_pts": 77.12
+ }
+}

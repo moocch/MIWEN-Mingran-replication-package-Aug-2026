@@ -1,0 +1,59 @@
+========================================================================
+GATE: numpy port must reproduce the archived link budget
+========================================================================
+[PASS] MNIST pass 1: port   -10.00 dBm  archived   -10.00 dBm  |diff| = 0.0000 dB
+[PASS] MNIST pass 2: port   -33.94 dBm  archived   -33.94 dBm  |diff| = 0.0007 dB
+[PASS] MNIST pass 3: port   -58.02 dBm  archived   -58.02 dBm  |diff| = 0.0019 dB
+[PASS] MNIST pass 4: port   -84.46 dBm  archived   -84.46 dBm  |diff| = 0.0048 dB
+[PASS] MNIST block eff 1: port 2.255 %  archived 2.255 %
+[PASS] MNIST block eff 2: port 2.181 %  archived 2.181 %
+[PASS] MNIST block eff 3: port 1.267 %  archived 1.267 %
+[PASS] GTSRB pass 1: port   -10.00 dBm  archived   -10.00 dBm  |diff| = 0.0000 dB
+[PASS] GTSRB pass 2: port   -34.27 dBm  archived   -34.27 dBm  |diff| = 0.0034 dB
+[PASS] GTSRB pass 3: port   -58.48 dBm  archived   -58.48 dBm  |diff| = 0.0034 dB
+[PASS] GTSRB pass 4: port   -85.16 dBm  archived   -85.16 dBm  |diff| = 0.0046 dB
+[PASS] GTSRB block eff 1: port 2.091 %  archived 2.091 %
+[PASS] GTSRB block eff 2: port 2.115 %  archived 2.115 %
+[PASS] GTSRB block eff 3: port 1.202 %  archived 1.202 %
+GATE PASSED: archived ladder reproduced to < 0.05 dB.
+
+========================================================================
+NO-BOOSTER RECOMPUTATION  (tex claim: near -52 and -95 dBm, <= 2 passes)
+========================================================================
+--- variant_L_bookkeeping ---
+    archived ladder minus 18.5 dB per completed recirculation (the 'worth ~18.5 dB of delivered video power' statement)
+  MNIST:  -10.00 ->  -52.44 ->  -95.02 dBm
+        tone SNR   49.0,   15.5,  -25.2 dB;  passes above the -73.6 dBm floor: 2
+        vs tex: pass2  -52.44 (|d|= 0.44 dB of -52),  pass3  -95.02 (|d|= 0.02 dB of -95)
+  GTSRB:  -10.00 ->  -52.77 ->  -95.48 dBm
+        tone SNR   43.0,   14.1,  -28.6 dB;  passes above the -73.6 dBm floor: 2
+        vs tex: pass2  -52.77 (|d|= 0.77 dB of -52),  pass3  -95.48 (|d|= 0.48 dB of -95)
+
+--- variant_A_recursion_Rv3500 ---
+    archived plan_Z recursion with g_boost = 0, R_v = 3500 Ohm
+  MNIST:  -10.00 ->  -52.42 -> -106.99 dBm
+        tone SNR   49.0,   15.5,  -37.1 dB;  passes above the -73.6 dBm floor: 2
+        vs tex: pass2  -52.42 (|d|= 0.42 dB of -52),  pass3 -106.99 (|d|=11.99 dB of -95)
+  GTSRB:  -10.00 ->  -52.74 -> -107.93 dBm
+        tone SNR   43.0,   14.1,  -41.1 dB;  passes above the -73.6 dBm floor: 2
+        vs tex: pass2  -52.74 (|d|= 0.74 dB of -52),  pass3 -107.93 (|d|=12.93 dB of -95)
+
+--- variant_B_recursion_Rv50 ---
+    g_boost = 0 and video source impedance back to 50 Ohm (R_v = 50 x 10^(boost/10) with boost = 0)
+  MNIST:  -10.00 ->  -33.96 ->  -58.37 dBm
+        tone SNR   49.0,   33.9,   11.5 dB;  passes above the -73.6 dBm floor: 3
+        vs tex: pass2  -33.96 (|d|=18.04 dB of -52),  pass3  -58.37 (|d|=36.63 dB of -95)
+  GTSRB:  -10.00 ->  -34.29 ->  -58.96 dBm
+        tone SNR   43.0,   32.6,    7.9 dB;  passes above the -73.6 dBm floor: 3
+        vs tex: pass2  -34.29 (|d|=17.71 dB of -52),  pass3  -58.96 (|d|=36.04 dB of -95)
+
+========================================================================
+VERDICT
+========================================================================
+variant L: reproduces -52/-95 within 1.5 dB: True;  supports <= 2 passes: True
+variant A: reproduces -52/-95 within 1.5 dB: False;  supports <= 2 passes: True
+variant B: reproduces -52/-95 within 1.5 dB: False;  supports <= 2 passes: False
+
+'~20 dB below the floor': variant L pass 3 = -95.02 dBm is 21.4 dB below -73.6 dBm (GTSRB -95.48 dBm: 21.9 dB below).
+
+wrote <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\text_numbers\note5_activation_block\recompute_no_booster.json

@@ -1,0 +1,283 @@
+[INFO] [UHD] linux; GNU C++ version 11.4.0; Boost_107400; UHD_4.10.0.0-0ubuntu1~jammy1
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [X300] Radio 1x clock: 200 MHz
+[WARNING] [0/Radio#1] Attempting to set tick rate to 0. Skipping.
+[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+[rig-check] own session claim honored (token match): ['/home/miwen/miwen_hwrun_20260802/IN_USE']
+[rig-check] rig appears free (no UHD/experiment processes, no claim files).
+[gr] RX ref_locked=True (10 MHz 外参)
+[gate] first capture: peak 0.330 FS (ref 0.335) pm=1747 d0=4646773
+[cap 1] d0=4646773 pm=1747 slots=150000 (15s)
+[packtest] |g|=0.1160 (ref 0.1155) resid=0.527 (band (0.3, 0.75)) (15s)
+[cal clean] reloaded frozen calibration
+[cap 2] d0=4093320 pm=2136 slots=879975 (67s)
+[cap 3] d0=4107101 pm=1530 slots=879975 (77s)
+Ousrp_source :error: In the last 71477 ms, 1 overflows occurred.
+[cap 4] d0=4116719 pm=2160 slots=879975 (87s)
+[cap 5] d0=4119069 pm=2284 slots=879975 (98s)
+[cap 6] d0=4094317 pm=2087 slots=879975 (108s)
+[cap 7] d0=4114304 pm=1522 slots=879975 (118s)
+[cap 8] d0=4097525 pm=1722 slots=879975 (128s)
+[cap 9] d0=4090367 pm=1687 slots=879975 (139s)
+[cap 10] d0=4106040 pm=1424 slots=879975 (149s)
+[cap 11] d0=4085851 pm=1343 slots=879975 (159s)
+[cap 12] d0=4084839 pm=1574 slots=879975 (170s)
+[cap 13] d0=4078528 pm=1739 slots=879975 (180s)
+[cap 14] d0=4126793 pm=2651 slots=879975 (190s)
+[cap 15] d0=4089073 pm=2293 slots=879975 (201s)
+[cap 16] d0=4129335 pm=1492 slots=879975 (211s)
+[cap 17] d0=4108455 pm=1558 slots=879975 (221s)
+[cap 18] d0=4124172 pm=1669 slots=879975 (232s)
+[cap 19] d0=4085226 pm=1582 slots=879975 (242s)
+[cap 20] d0=4123438 pm=2014 slots=879975 (252s)
+[cap 21] d0=4111752 pm=2358 slots=879975 (263s)
+[cap 22] d0=4089748 pm=1735 slots=879975 (273s)
+[cap 23] d0=6245089 pm=4447 slots=336525 (302s)
+[cap 24] d0=4099103 pm=2524 slots=880000 (355s)
+[cap 25] d0=4131050 pm=1955 slots=880000 (366s)
+[cap 26] d0=4089729 pm=1838 slots=880000 (376s)
+[cap 27] d0=4111622 pm=2029 slots=880000 (387s)
+[cap 28] d0=4089876 pm=1955 slots=880000 (397s)
+[cap 29] d0=4127055 pm=2054 slots=880000 (408s)
+Ousrp_source :error: In the last 330931 ms, 1 overflows occurred.
+[cap 30] d0=4105565 pm=2151 slots=880000 (418s)
+[cap 31] d0=4089808 pm=2012 slots=880000 (429s)
+[cap 32] d0=4092047 pm=2156 slots=880000 (439s)
+Ousrp_source :error: In the last 30850 ms, 1 overflows occurred.
+[cap 33] d0=4128367 pm=2196 slots=880000 (450s)
+Ousrp_source :error: In the last 10471 ms, 1 overflows occurred.
+[cap 34] d0=4094772 pm=1928 slots=880000 (460s)
+[cap 35] d0=4130507 pm=2154 slots=880000 (471s)
+[cap 36] d0=4127742 pm=2086 slots=880000 (481s)
+Ousrp_source :error: In the last 31600 ms, 1 overflows occurred.
+[cap 37] d0=4134302 pm=2042 slots=880000 (492s)
+Ousrp_source :error: In the last 10493 ms, 1 overflows occurred.
+[cap 38] d0=4106471 pm=1996 slots=880000 (502s)
+Ousrp_source :error: In the last 11176 ms, 1 overflows occurred.
+[cap 39] d0=4112176 pm=2110 slots=880000 (513s)
+[cap 40] d0=4102388 pm=2141 slots=880000 (523s)
+[cap 41] d0=4108164 pm=2055 slots=880000 (534s)
+Ousrp_source :error: In the last 30865 ms, 1 overflows occurred.
+[cap 42] d0=4103852 pm=1841 slots=880000 (544s)
+[cap 43] d0=4126827 pm=1900 slots=880000 (555s)
+[cap 44] d0=4091441 pm=1766 slots=880000 (565s)
+Ousrp_source :error: In the last 31572 ms, 1 overflows occurred.
+[cap 45] d0=4089849 pm=2006 slots=880000 (576s)
+[cap 46] d0=4090094 pm=2129 slots=880000 (586s)
+Ousrp_source :error: In the last 20900 ms, 1 overflows occurred.
+[cap 47] d0=4122508 pm=1923 slots=880000 (597s)
+Ousrp_source :error: In the last 10508 ms, 1 overflows occurred.
+[cap 48] d0=4106232 pm=2156 slots=880000 (607s)
+[cap 49] d0=4080568 pm=2277 slots=880000 (618s)
+[cap 50] d0=4106328 pm=2034 slots=880000 (628s)
+[cap 51] d0=4078230 pm=2021 slots=880000 (639s)
+Ousrp_source :error: In the last 43004 ms, 1 overflows occurred.
+[cap 52] d0=4100828 pm=1924 slots=880000 (650s)
+[cap 53] d0=4116704 pm=2093 slots=880000 (660s)
+[cap 54] d0=4109708 pm=2085 slots=880000 (671s)
+Ousrp_source :error: In the last 30892 ms, 1 overflows occurred.
+[cap 55] d0=4121288 pm=2051 slots=880000 (681s)
+[cap 56] d0=4076500 pm=2000 slots=880000 (692s)
+Ousrp_source :error: In the last 21705 ms, 1 overflows occurred.
+[cap 57] d0=4112856 pm=1971 slots=880000 (702s)
+[cap 58] d0=4095343 pm=1867 slots=880000 (713s)
+Ousrp_source :error: In the last 20477 ms, 1 overflows occurred.
+[cap 59] d0=4121590 pm=2077 slots=880000 (723s)
+Ousrp_source :error: In the last 11256 ms, 1 overflows occurred.
+[cap 60] d0=4127958 pm=1804 slots=880000 (734s)
+[cap 61] d0=4126694 pm=1939 slots=880000 (745s)
+[cap 62] d0=4110906 pm=2075 slots=880000 (755s)
+Ousrp_source :error: In the last 30919 ms, 1 overflows occurred.
+[cap 63] d0=4085860 pm=1979 slots=880000 (766s)
+Ousrp_source :error: In the last 10562 ms, 1 overflows occurred.
+[cap 64] d0=4106252 pm=2192 slots=880000 (776s)
+[cap 65] d0=4117996 pm=2270 slots=880000 (787s)
+Ousrp_source :error: In the last 21798 ms, 1 overflows occurred.
+[cap 66] d0=4113139 pm=1980 slots=880000 (797s)
+[cap 67] d0=4121475 pm=2049 slots=880000 (808s)
+Ousrp_source :error: In the last 20467 ms, 1 overflows occurred.
+[cap 68] d0=4115856 pm=2097 slots=880000 (818s)
+[cap 69] d0=4116399 pm=1971 slots=880000 (829s)
+[cap 70] d0=4096055 pm=2027 slots=880000 (840s)
+[cap 71] d0=4129729 pm=2176 slots=880000 (850s)
+Ousrp_source :error: In the last 43134 ms, 1 overflows occurred.
+[cap 72] d0=4124730 pm=2157 slots=880000 (861s)
+Ousrp_source :error: In the last 9808 ms, 1 overflows occurred.
+[cap 73] d0=4137766 pm=2059 slots=880000 (872s)
+[cap 74] d0=4113802 pm=1995 slots=880000 (882s)
+[cap 75] d0=4130217 pm=2175 slots=880000 (893s)
+Ousrp_source :error: In the last 32620 ms, 1 overflows occurred.
+[cap 76] d0=4110602 pm=2149 slots=880000 (903s)
+[cap 77] d0=4129716 pm=2178 slots=880000 (914s)
+[cap 78] d0=4121783 pm=2211 slots=880000 (925s)
+[cap 79] d0=4125105 pm=2000 slots=880000 (935s)
+[cap 80] d0=4113819 pm=2157 slots=880000 (946s)
+Ousrp_source :error: In the last 52362 ms, 1 overflows occurred.
+[cap 81] d0=4092018 pm=2224 slots=880000 (957s)
+[cap 82] d0=6758224 pm=2597 slots=160000 (967s)
+[cap 83] d0=4132564 pm=2957 slots=880000 (1017s)
+[cap 84] d0=4078945 pm=2436 slots=880000 (1028s)
+[cap 85] d0=3644336 pm=3084 slots=288000 (1044s)
+[cap 86] d0=841198 pm=2034 slots=55040 (1050s)
+[run clean] 10/25: running acc 10.00 (1050s)
+[cap 87] d0=4085539 pm=2053 slots=879975 (1101s)
+[cap 88] d0=4089485 pm=1528 slots=879975 (1111s)
+[cap 89] d0=4130474 pm=1581 slots=879975 (1121s)
+[cap 90] d0=4105830 pm=1634 slots=879975 (1132s)
+[cap 91] d0=4109664 pm=1527 slots=879975 (1142s)
+[cap 92] d0=4128159 pm=1614 slots=879975 (1152s)
+[cap 93] d0=4130264 pm=1489 slots=879975 (1163s)
+[cap 94] d0=4113076 pm=1636 slots=879975 (1173s)
+[cap 95] d0=4110400 pm=1471 slots=879975 (1183s)
+[cap 96] d0=4118737 pm=1540 slots=879975 (1194s)
+[cap 97] d0=4120579 pm=1532 slots=879975 (1204s)
+[cap 98] d0=4081577 pm=1405 slots=879975 (1214s)
+[cap 99] d0=4082955 pm=1894 slots=879975 (1224s)
+[cap 100] d0=4077800 pm=1795 slots=879975 (1235s)
+Ousrp_source :error: In the last 289622 ms, 1 overflows occurred.
+[cap 101] d0=4084373 pm=1795 slots=879975 (1245s)
+[cap 102] d0=4121578 pm=1566 slots=879975 (1256s)
+[cap 103] d0=4102122 pm=1551 slots=879975 (1266s)
+[cap 104] d0=4087450 pm=1719 slots=879975 (1276s)
+[cap 105] d0=4114273 pm=1811 slots=879975 (1287s)
+[cap 106] d0=4096115 pm=1954 slots=879975 (1297s)
+[cap 107] d0=4100607 pm=1984 slots=879975 (1307s)
+[cap 108] d0=3748930 pm=2431 slots=336525 (1337s)
+[cap 109] d0=4083908 pm=2606 slots=880000 (1389s)
+[cap 110] d0=4097537 pm=2015 slots=880000 (1400s)
+Ousrp_source :error: In the last 165190 ms, 1 overflows occurred.
+[cap 111] d0=4084040 pm=1908 slots=880000 (1410s)
+[cap 112] d0=4103364 pm=2088 slots=880000 (1421s)
+[cap 113] d0=4111354 pm=1879 slots=880000 (1431s)
+[cap 114] d0=4113966 pm=2045 slots=880000 (1442s)
+Ousrp_source :error: In the last 41992 ms, 1 overflows occurred.
+[cap 115] d0=4118135 pm=2055 slots=880000 (1452s)
+Ousrp_source :error: In the last 10421 ms, 1 overflows occurred.
+[cap 116] d0=4121587 pm=2012 slots=880000 (1463s)
+[cap 117] d0=4083788 pm=2250 slots=880000 (1473s)
+[cap 118] d0=4102077 pm=2276 slots=880000 (1484s)
+[cap 119] d0=4122542 pm=1950 slots=880000 (1494s)
+[cap 120] d0=4095099 pm=1938 slots=880000 (1505s)
+[cap 121] d0=4082051 pm=2066 slots=880000 (1515s)
+[cap 122] d0=4119902 pm=1983 slots=880000 (1526s)
+Ousrp_source :error: In the last 72698 ms, 1 overflows occurred.
+[cap 123] d0=4092454 pm=2022 slots=880000 (1536s)
+[cap 124] d0=4114113 pm=2171 slots=880000 (1547s)
+[cap 125] d0=4106070 pm=2104 slots=880000 (1557s)
+[cap 126] d0=4116385 pm=1983 slots=880000 (1568s)
+Ousrp_source :error: In the last 41979 ms, 1 overflows occurred.
+[cap 127] d0=4119158 pm=1957 slots=880000 (1578s)
+[cap 128] d0=4085368 pm=2164 slots=880000 (1589s)
+[cap 129] d0=4122973 pm=1859 slots=880000 (1599s)
+[cap 130] d0=4074827 pm=2064 slots=880000 (1610s)
+[cap 131] d0=4110169 pm=2091 slots=880000 (1620s)
+[cap 132] d0=4113460 pm=2054 slots=880000 (1631s)
+[cap 133] d0=4125493 pm=2293 slots=880000 (1642s)
+[cap 134] d0=4096279 pm=2256 slots=880000 (1652s)
+Ousrp_source :error: In the last 84318 ms, 1 overflows occurred.
+[cap 135] d0=4098532 pm=2082 slots=880000 (1663s)
+[cap 136] d0=4082773 pm=2003 slots=880000 (1673s)
+[cap 137] d0=4108836 pm=1962 slots=880000 (1684s)
+Ousrp_source :error: In the last 32261 ms, 1 overflows occurred.
+[cap 138] d0=4119143 pm=2147 slots=880000 (1694s)
+[cap 139] d0=4116911 pm=2172 slots=880000 (1705s)
+[cap 140] d0=4102118 pm=2228 slots=880000 (1715s)
+[cap 141] d0=4129969 pm=2280 slots=880000 (1726s)
+[cap 142] d0=4089646 pm=2148 slots=880000 (1737s)
+Ousrp_source :error: In the last 52946 ms, 1 overflows occurred.
+[cap 143] d0=4111899 pm=1973 slots=880000 (1747s)
+[cap 144] d0=4122528 pm=2016 slots=880000 (1758s)
+[cap 145] d0=4096272 pm=1930 slots=880000 (1768s)
+[cap 146] d0=4119521 pm=1999 slots=880000 (1779s)
+Ousrp_source :error: In the last 41606 ms, 1 overflows occurred.
+[cap 147] d0=4110689 pm=2068 slots=880000 (1789s)
+Ousrp_source :error: In the last 11341 ms, 1 overflows occurred.
+[cap 148] d0=3883875 pm=2525 slots=880000 (1836s)
+[cap 149] d0=4123095 pm=2554 slots=880000 (1882s)
+[cap 150] d0=4087817 pm=2153 slots=880000 (1893s)
+Ousrp_source :error: In the last 103231 ms, 1 overflows occurred.
+[cap 151] d0=4114529 pm=2031 slots=880000 (1903s)
+Ousrp_source :error: In the last 10523 ms, 1 overflows occurred.
+[cap 152] d0=4095109 pm=1938 slots=880000 (1914s)
+[cap 153] d0=4097568 pm=2034 slots=880000 (1924s)
+[cap 154] d0=4130955 pm=2197 slots=880000 (1935s)
+[cap 155] d0=4093349 pm=2143 slots=880000 (1946s)
+[cap 156] d0=4096419 pm=2208 slots=880000 (1956s)
+Ousrp_source :error: In the last 53042 ms, 1 overflows occurred.
+[cap 157] d0=4094393 pm=2175 slots=880000 (1967s)
+Ousrp_source :error: In the last 9915 ms, 1 overflows occurred.
+[cap 158] d0=4089335 pm=2025 slots=880000 (1977s)
+Ousrp_source :error: In the last 11301 ms, 1 overflows occurred.
+[cap 159] d0=4095909 pm=1937 slots=880000 (1988s)
+[cap 160] d0=4087045 pm=2204 slots=880000 (1999s)
+Ousrp_source :error: In the last 21187 ms, 1 overflows occurred.
+[cap 161] d0=4100618 pm=2075 slots=880000 (2009s)
+[cap 162] d0=4123170 pm=2050 slots=880000 (2020s)
+Ousrp_source :error: In the last 21253 ms, 1 overflows occurred.
+[cap 163] d0=4124075 pm=2070 slots=880000 (2031s)
+[cap 164] d0=4124536 pm=1967 slots=880000 (2041s)
+[cap 165] d0=4086306 pm=2087 slots=880000 (2052s)
+[cap 166] d0=4116667 pm=2234 slots=880000 (2062s)
+[cap 167] d0=6764893 pm=2485 slots=160000 (2073s)
+[cap 168] d0=4101408 pm=3108 slots=880000 (2123s)
+[cap 169] d0=4091720 pm=2554 slots=880000 (2134s)
+[cap 170] d0=3632687 pm=3066 slots=288000 (2150s)
+[cap 171] d0=2595421 pm=2039 slots=55040 (2156s)
+[run clean] 20/25: running acc 15.00 (2156s)
+[cap 172] d0=4126018 pm=2172 slots=879975 (2207s)
+[cap 173] d0=4088702 pm=1543 slots=879975 (2217s)
+[cap 174] d0=4123644 pm=1778 slots=879975 (2227s)
+[cap 175] d0=4082309 pm=1770 slots=879975 (2237s)
+[cap 176] d0=4114085 pm=1481 slots=879975 (2248s)
+[cap 177] d0=4120484 pm=1517 slots=879975 (2258s)
+[cap 178] d0=4118199 pm=1487 slots=879975 (2268s)
+[cap 179] d0=4116330 pm=1878 slots=879975 (2279s)
+[cap 180] d0=4109901 pm=3111 slots=879975 (2289s)
+[cap 181] d0=4121788 pm=3890 slots=879975 (2299s)
+[cap 182] d0=3997241 pm=2394 slots=608250 (2354s)
+[cap 183] d0=4128805 pm=2559 slots=880000 (2406s)
+[cap 184] d0=4108647 pm=2006 slots=880000 (2417s)
+Ousrp_source :error: In the last 396520 ms, 1 overflows occurred.
+[cap 185] d0=4109993 pm=1859 slots=880000 (2427s)
+[cap 186] d0=4126638 pm=2023 slots=880000 (2437s)
+[cap 187] d0=4117707 pm=1869 slots=880000 (2448s)
+Ousrp_source :error: In the last 30540 ms, 1 overflows occurred.
+[cap 188] d0=4091564 pm=2103 slots=880000 (2458s)
+Ousrp_source :error: In the last 11019 ms, 1 overflows occurred.
+[cap 189] d0=4091765 pm=2144 slots=880000 (2468s)
+[cap 190] d0=4117076 pm=1962 slots=880000 (2479s)
+[cap 191] d0=4098032 pm=2074 slots=880000 (2489s)
+[cap 192] d0=4128845 pm=2185 slots=880000 (2500s)
+[cap 193] d0=4095634 pm=1922 slots=880000 (2510s)
+[cap 194] d0=4094027 pm=2018 slots=880000 (2520s)
+[cap 195] d0=4095788 pm=1963 slots=880000 (2531s)
+Ousrp_source :error: In the last 72018 ms, 1 overflows occurred.
+[cap 196] d0=4104472 pm=2081 slots=880000 (2541s)
+[cap 197] d0=4091961 pm=2139 slots=880000 (2552s)
+[cap 198] d0=4099160 pm=2068 slots=880000 (2562s)
+[cap 199] d0=4093420 pm=2086 slots=880000 (2572s)
+[cap 200] d0=4091333 pm=2088 slots=880000 (2583s)
+[cap 201] d0=4101803 pm=1948 slots=880000 (2593s)
+[cap 202] d0=4126204 pm=2012 slots=880000 (2604s)
+[cap 203] d0=4142373 pm=1840 slots=880000 (2614s)
+[cap 204] d0=4126365 pm=2149 slots=880000 (2624s)
+[cap 205] d0=4102941 pm=2235 slots=880000 (2635s)
+[cap 206] d0=4103743 pm=1919 slots=880000 (2645s)
+[cap 207] d0=4099966 pm=2442 slots=880000 (2655s)
+[cap 208] d0=4088057 pm=2564 slots=880000 (2666s)
+[cap 209] d0=4088127 pm=1999 slots=880000 (2676s)
+[cap 210] d0=4098525 pm=2077 slots=880000 (2687s)
+[cap 211] d0=4129694 pm=1940 slots=880000 (2697s)
+[cap 212] d0=1726555 pm=2533 slots=80000 (2704s)
+[cap 213] d0=4131774 pm=3050 slots=880000 (2754s)
+[cap 214] d0=3686878 pm=2992 slots=144000 (2764s)
+[cap 215] d0=1100403 pm=1978 slots=27520 (2769s)
+[run clean] 25/25: running acc 12.00 (2769s)
+[run clean] [275:300] FINAL: 12.00
+[clean] saved

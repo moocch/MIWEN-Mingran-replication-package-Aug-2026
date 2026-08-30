@@ -1,0 +1,17 @@
+REPORTED RESULT — hardware, (0,0) dBm, N=600
+
+  clean (ideal-mult. train)  N=600  correct= 34  acc=  5.67%
+                             weights=['r35_r3plus_s0_hw.npz']  power=[(0.0, 0.0)]
+                             most-predicted class 12 x590
+
+  twin (hardware-aware)      N=600  correct=591  acc= 98.50%
+                             weights=['serial_twin_s0_hw.npz']  power=[(0.0, 0.0)]
+                             most-predicted class 1 x42
+
+  both arms ran the identical image set = battery[0:600] : True
+  (frozen battery holds 1200 images; 600 used)
+
+Digital comparators, pinned BEFORE the hardware runs
+  clean_ideal        seg1  —  (audit: 99.50% on the battery frame)      seg2 300/300 (100.00%)
+  twin_under_twin    seg1 295/300 (pinned 98.33%)  seg2 296/300 (98.67%)  pooled 591/600 = 98.50%
+  clean_under_twin   seg1   2/300 (pinned 0.67%)  seg2   3/300 (1.00%)  pooled   5/600 = 0.83%

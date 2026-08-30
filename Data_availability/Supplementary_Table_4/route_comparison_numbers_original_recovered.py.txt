@@ -1,0 +1,35 @@
+"""Numeric accuracy-energy comparison of the two adaptation routes.
+
+All inputs are archived outputs of the manuscript's own pipelines:
+  - fig5_plot_data.npz  : measured client-energy accounting (panel g package)
+  - ip_optimized_N65536_20260826.npz : out-of-sample correction results
+The only new arithmetic is the client-side cost of DEPLOYING the correction:
+applying its four complex coefficients per answer = 16 real MACs = 16 pJ at
+the benchmark constant e_dig = 1 pJ/MAC (feature templates depend only on
+the transmitted waveforms and are precomputed off-client).
+"""
+import numpy as np
+
+BASE = r"<archive>\202607_MIWEN_v2\V2_Manu\Manuscript_Reproductivity\fig3"
+H100 = 70e-15
+
+d = np.load(BASE + r"\g\fig5_energy_package\data\fig5_plot_data.npz", allow_pickle=True)
+print("fig5_plot_data keys:", sorted(d.files))
+for k in sorted(d.files):
+    v = d[k]
+    if v.size <= 8:
+        print(f"  {k} = {v}")
+
+c = np.load(BASE + r"\data\ip_optimized_N65536_20260826.npz", allow_pickle=True)
+print("\nip_optimized keys:", sorted(c.files))
+for k in ["rmse_before_mean", "rmse_before_std", "rmse_after_mean",
+          "rmse_after_std", "enob_before", "enob_after", "snr_labels_db"]:
+    if k in c.files:
+        print(f"  {k} = {c[k]}")
+
+print("\n--- derived: deploying the correction (+16 real MACs = 16 pJ/answer) ---")
+for N, eip in zip([4096, 65536], np.atleast_1d(d["points_e_ip"]) if "points_e_ip" in d.files else [1.467273e-15, 0.587794e-15]):
+    fee = 16e-12 / (4 * N)
+    tot = eip + fee
+    print(f"N={N:>6}: baseline {eip*1e15:.3f} fJ/MAC ({H100/eip:6.1f}x vs H100)"
+          f"  -> +{fee*1e15:.3f} fJ/MAC corrected total {tot*1e15:.3f} fJ/MAC ({H100/tot:6.1f}x vs H100)")

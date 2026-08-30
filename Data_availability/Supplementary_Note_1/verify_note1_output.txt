@@ -1,0 +1,19 @@
+== Note 1, S1.3: vector twin (N = 2-8) ==
+PASS  c_LO  = 0.885: displayed 0.885, source 0.8848137855529785 -> rounds to 0.885
+PASS  c_RF  = -0.040: displayed -0.040, source -0.04016757011413574 -> rounds to -0.040
+PASS  |delta_NN| cap = 6 dB (config nn_max_db): displayed 6.0, source 6.0 -> rounds to 6.0
+PASS  RMSE(N=2) = 1.91 dB (full twin): displayed 1.91, source 1.9113657122944345 -> rounds to 1.91
+PASS  RMSE(N=4) = 1.67 dB (full twin): displayed 1.67, source 1.6723033172554829 -> rounds to 1.67
+PASS  RMSE(N=8) = 1.55 dB (full twin): displayed 1.55, source 1.5484952031755015 -> rounds to 1.55
+
+== S1.3 'seven parameters frozen': n1_physics_params == Table 1 values ==
+PASS  frozen G_max,dB   = -1.84 dB: displayed -1.84, source -1.8437995910644531 -> rounds to -1.84
+PASS  frozen P_LO,sat   = +1.73 dBm: displayed 1.73, source 1.7346782684326172 -> rounds to 1.73
+PASS  frozen beta_LO    = 1.045: displayed 1.045, source 1.0452940464019775 -> rounds to 1.045
+PASS  frozen P_RF,comp  = +4.47 dBm: displayed 4.47, source 4.474578857421875 -> rounds to 4.47
+PASS  frozen beta_RF    = 2.13: displayed 2.13, source 2.132936477661133 -> rounds to 2.13
+PASS  frozen P_noise    = -73.62 dBm: displayed -73.62, source -73.62084197998047 -> rounds to -73.62
+PASS  frozen leak_dB    = -84.25 dB: displayed -84.25, source -84.25154113769531 -> rounds to -84.25
+PASS  frozen turn-on shape = Weibull: source 'weibull'
+
+RESULT: all 14 checks PASSED

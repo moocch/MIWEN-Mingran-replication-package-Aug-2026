@@ -1,0 +1,123 @@
+{
+  "input_npz": "4096CH/4096code_meas/meas_raw/gr_usrp_mixer_vector_heatmap_N4096.npz",
+  "aliasing": {
+    "fs_hz": 10000000.0,
+    "df_tone_hz": 1000000.0,
+    "n_tones_nominal": 4096,
+    "n_tones_folded": 10,
+    "ip_nominal": 0.0007679249747619837,
+    "ip_eff_folded": 0.01397973060960252,
+    "ip_gap_db": 12.601800104880951
+  },
+  "physics_params": {
+    "G": 2.7293514785998596,
+    "PsatL": -2.8049513064337788,
+    "betaL": 1.8507810921098646,
+    "PsatR": -8.022814238429426,
+    "betaR": 2.9163471944551613,
+    "w_hill": 0.9998751648148396,
+    "PcompRF": -3.944236460733695,
+    "PcompLO": -5.199087182330942,
+    "betaC": 0.6101367971342286,
+    "kappa": -1.4910963469974874,
+    "c_papr_lo": 0.5383216348803388,
+    "c_papr_rf": 0.0681181224296381,
+    "leak": -97.70295030590809,
+    "C_cal": 13.231423935543141,
+    "floor": -97.58202830211204
+  },
+  "papr_db": {
+    "lo": 5.357,
+    "rf": 5.311
+  },
+  "metrics_db": {
+    "rmse_ideal_shape": 10.345887808863704,
+    "rmse_ideal_eff_shape": 10.345887808863713,
+    "rmse_naive_n1_shape": 18.27416181591892,
+    "rmse_physics_only": 1.8022691737821477,
+    "rmse_physics_plus_nn": 0.7858207318089814,
+    "mae_physics_plus_nn": 0.40394885744538156,
+    "p95_abs_err": 1.8541754840595628,
+    "frac_abs_err_le_2db": 0.9595959595959596
+  },
+  "config": {
+    "npz": "4096CH/4096code_meas/meas_raw/gr_usrp_mixer_vector_heatmap_N4096.npz",
+    "init": "fit_dualpump.npy",
+    "n1_summary": "/path/to/work/4096CH/N=1/PIML_Figures/model/summary.json",
+    "outdir": "/path/to/work/4096_out",
+    "seed": 0,
+    "hidden": 48,
+    "max_db": 5.0,
+    "n_iter_phys": 1200,
+    "n_iter_nn": 6000,
+    "n_iter_joint": 4000,
+    "lr_phys": 0.003,
+    "lr_nn": 0.003,
+    "lr_joint_phys": 0.0002,
+    "lr_joint_nn": 0.0005,
+    "lam_nn": 0.0001,
+    "lam_anchor": 0.001
+  },
+  "history_tail": [
+    {
+      "stage": "nn",
+      "iter": 6000,
+      "rmse_db": 0.8173869629509324
+    },
+    {
+      "stage": "joint",
+      "iter": 1,
+      "rmse_db": 0.8425811837939772
+    },
+    {
+      "stage": "joint",
+      "iter": 400,
+      "rmse_db": 0.8145340152975226
+    },
+    {
+      "stage": "joint",
+      "iter": 800,
+      "rmse_db": 0.8116846303555777
+    },
+    {
+      "stage": "joint",
+      "iter": 1200,
+      "rmse_db": 0.8086137116683983
+    },
+    {
+      "stage": "joint",
+      "iter": 1600,
+      "rmse_db": 0.8056586291337124
+    },
+    {
+      "stage": "joint",
+      "iter": 2000,
+      "rmse_db": 0.8026171938831208
+    },
+    {
+      "stage": "joint",
+      "iter": 2400,
+      "rmse_db": 0.799525623592072
+    },
+    {
+      "stage": "joint",
+      "iter": 2800,
+      "rmse_db": 0.7963181572151194
+    },
+    {
+      "stage": "joint",
+      "iter": 3200,
+      "rmse_db": 0.7929160982976504
+    },
+    {
+      "stage": "joint",
+      "iter": 3600,
+      "rmse_db": 0.7900188539409467
+    },
+    {
+      "stage": "joint",
+      "iter": 4000,
+      "rmse_db": 0.7858207318089814
+    }
+  ]
+}

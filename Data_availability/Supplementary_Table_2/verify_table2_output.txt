@@ -1,0 +1,30 @@
+PASS  summary.json (top level) is byte-identical to twin_training_run_4096DT_model/summary.json (md5 6a79f292287b21dac4b803c6f279852c)
+
+== Supplementary Table 2: the 15 calibrated physics parameters ==
+PASS  #1  G_max,dB   (G)         = +2.73 dB: displayed 2.73, source 2.7293514785998596 -> rounds to 2.73
+PASS  #2  P_LO,sat   (PsatL)     = -2.80 dBm: displayed -2.80, source -2.8049513064337788 -> rounds to -2.80
+PASS  #3  beta_LO    (betaL)     = 1.85: displayed 1.85, source 1.8507810921098646 -> rounds to 1.85
+PASS  #4  P_RF,sat   (PsatR)     = -8.02 dBm: displayed -8.02, source -8.022814238429426 -> rounds to -8.02
+PASS  #5  beta_RF    (betaR)     = 2.92: displayed 2.92, source 2.9163471944551613 -> rounds to 2.92
+PASS  #6  w          (w_hill)    = 1.00: displayed 1.00, source 0.9998751648148396 -> rounds to 1.00
+PASS  #7  P_RF,comp  (PcompRF)   = -3.94 dBm: displayed -3.94, source -3.944236460733695 -> rounds to -3.94
+PASS  #8  P_LO,comp  (PcompLO)   = -5.20 dBm: displayed -5.20, source -5.199087182330942 -> rounds to -5.20
+PASS  #9  beta_C     (betaC)     = 0.61: displayed 0.61, source 0.6101367971342286 -> rounds to 0.61
+PASS  #10 kappa                  = -1.49 dB: displayed -1.49, source -1.4910963469974874 -> rounds to -1.49
+PASS  #11 c_papr,LO  (c_papr_lo) = 0.54: displayed 0.54, source 0.5383216348803388 -> rounds to 0.54
+PASS  #12 c_papr,RF  (c_papr_rf) = 0.07: displayed 0.07, source 0.0681181224296381 -> rounds to 0.07
+PASS  #13 leak_dB    (leak)      = -97.7 dB: displayed -97.7, source -97.70295030590809 -> rounds to -97.7
+PASS  #14 C_cal                  = +13.2 dB: displayed 13.2, source 13.231423935543141 -> rounds to 13.2
+PASS  #15 P_floor    (floor)     = -97.6 dB: displayed -97.6, source -97.58202830211204 -> rounds to -97.6
+
+== Quoted text metrics (Supplementary Note 1, S1.4) ==
+PASS  full-twin RMSE       = 0.79 dB: displayed 0.79, source 0.7858207318089814 -> rounds to 0.79
+PASS  physics-only RMSE    = 1.80 dB: displayed 1.80, source 1.8022691737821477 -> rounds to 1.80
+PASS  ideal-multiplier RMSE = 10.35 dB: displayed 10.35, source 10.345887808863704 -> rounds to 10.35
+PASS  within +/-2 dB       = 96 %: displayed 96, source 95.95959595959596 -> rounds to 96
+
+== Note 1 S1.5: the two frozen constants reused at N = 65,536 ==
+PASS  P_LO,comp = -5.20 dBm (frozen): displayed -5.20, source -5.199087182330942 -> rounds to -5.20
+PASS  beta_C    = 0.610     (frozen): displayed 0.610, source 0.6101367971342286 -> rounds to 0.610
+
+RESULT: all 22 checks PASSED

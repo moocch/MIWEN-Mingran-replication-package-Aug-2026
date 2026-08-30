@@ -1,0 +1,168 @@
+{
+  "n1_physics_params": {
+    "lo_shape": "weibull",
+    "G_max_dB": -1.8437995910644531,
+    "conversion_loss_dB": 1.8437995910644531,
+    "P_LO_sat_dBm": 1.7346782684326172,
+    "beta_LO": 1.0452940464019775,
+    "P_RF_comp_dBm": 4.474578857421875,
+    "beta_RF": 2.132936477661133,
+    "P_noise_dBm": -73.62084197998047,
+    "leak_dB": -84.25154113769531
+  },
+  "vector_papr_params": {
+    "c_papr_lo": 0.8848137855529785,
+    "c_papr_rf": -0.04016757011413574
+  },
+  "trained_on": [
+    {
+      "N": 2,
+      "ip_sq": 0.5763460151036311,
+      "papr_lo_db": 1.7159621462171126,
+      "papr_rf_db": 2.894870913428857,
+      "file": "usrp_mixer_vector_heatmap_N2.npz"
+    },
+    {
+      "N": 4,
+      "ip_sq": 0.06425096942402392,
+      "papr_lo_db": 2.8589870560279005,
+      "papr_rf_db": 2.1642302845413837,
+      "file": "usrp_mixer_vector_heatmap_N4.npz"
+    },
+    {
+      "N": 8,
+      "ip_sq": 0.13524463776344609,
+      "papr_lo_db": 3.025629502007048,
+      "papr_rf_db": 2.8650103300297083,
+      "file": "usrp_mixer_vector_heatmap_N8.npz"
+    }
+  ],
+  "metrics_db": {
+    "2": {
+      "ideal": {
+        "RMSE_dB": 18.71110119114569,
+        "MAE_dB": 12.493243512031054,
+        "Bias_dB": -5.314412936616123,
+        "p95_abs_err_dB": 44.81737887601468,
+        "within_1dB_pct": 13.774104683195592,
+        "within_2dB_pct": 21.028466483011936
+      },
+      "naive": {
+        "RMSE_dB": 3.2668441525632166,
+        "MAE_dB": 2.23128351488047,
+        "Bias_dB": 0.15751235398464297,
+        "p95_abs_err_dB": 6.1457817651684,
+        "within_1dB_pct": 38.6593204775023,
+        "within_2dB_pct": 61.34067952249771
+      },
+      "phys": {
+        "RMSE_dB": 3.3718649905733393,
+        "MAE_dB": 2.1812209261783595,
+        "Bias_dB": 0.8146451201197825,
+        "p95_abs_err_dB": 7.447386795815832,
+        "within_1dB_pct": 38.6593204775023,
+        "within_2dB_pct": 62.99357208448117
+      },
+      "full": {
+        "RMSE_dB": 1.9113657122944345,
+        "MAE_dB": 1.2249863256169364,
+        "Bias_dB": 0.3546012891431124,
+        "p95_abs_err_dB": 3.7837118952817916,
+        "within_1dB_pct": 59.41230486685032,
+        "within_2dB_pct": 84.29752066115702
+      }
+    },
+    "4": {
+      "ideal": {
+        "RMSE_dB": 23.119717956255272,
+        "MAE_dB": 15.07587450590496,
+        "Bias_dB": -12.354763105955433,
+        "p95_abs_err_dB": 54.610977311833125,
+        "within_1dB_pct": 7.529843893480257,
+        "within_2dB_pct": 16.2534435261708
+      },
+      "naive": {
+        "RMSE_dB": 4.14136182367763,
+        "MAE_dB": 3.1162689460150204,
+        "Bias_dB": -2.1592181038351774,
+        "p95_abs_err_dB": 8.623260545467206,
+        "within_1dB_pct": 28.74196510560147,
+        "within_2dB_pct": 47.842056932966024
+      },
+      "phys": {
+        "RMSE_dB": 3.3947407123534297,
+        "MAE_dB": 2.547106891165344,
+        "Bias_dB": -1.262243916802161,
+        "p95_abs_err_dB": 6.6243012435709225,
+        "within_1dB_pct": 33.51698806244261,
+        "within_2dB_pct": 54.729109274563825
+      },
+      "full": {
+        "RMSE_dB": 1.6723033172554829,
+        "MAE_dB": 1.3088583744236115,
+        "Bias_dB": -0.4233708513756121,
+        "p95_abs_err_dB": 3.150919105795102,
+        "within_1dB_pct": 44.81175390266299,
+        "within_2dB_pct": 78.97153351698806
+      }
+    },
+    "8": {
+      "ideal": {
+        "RMSE_dB": 21.61113603378897,
+        "MAE_dB": 14.360309953094072,
+        "Bias_dB": -9.026534564120873,
+        "p95_abs_err_dB": 51.89989574704941,
+        "within_1dB_pct": 8.172635445362717,
+        "within_2dB_pct": 19.19191919191919
+      },
+      "naive": {
+        "RMSE_dB": 3.0200547781239027,
+        "MAE_dB": 2.1960211527233704,
+        "Bias_dB": -0.5505108489501428,
+        "p95_abs_err_dB": 6.483677064316435,
+        "within_1dB_pct": 38.47566574839302,
+        "within_2dB_pct": 61.15702479338842
+      },
+      "phys": {
+        "RMSE_dB": 2.812578555041557,
+        "MAE_dB": 2.0189334706301936,
+        "Bias_dB": 0.4759704291742295,
+        "p95_abs_err_dB": 5.903027972243493,
+        "within_1dB_pct": 38.6593204775023,
+        "within_2dB_pct": 62.62626262626263
+      },
+      "full": {
+        "RMSE_dB": 1.5484952031755015,
+        "MAE_dB": 1.1797777414097883,
+        "Bias_dB": 0.17624456123637255,
+        "p95_abs_err_dB": 2.994017913670655,
+        "within_1dB_pct": 50.413223140495866,
+        "within_2dB_pct": 84.29752066115702
+      }
+    }
+  },
+  "config": {
+    "n1_pt": "PIML_Figures/PIML_Figures/model/piml_mixer.pt",
+    "n1_summary": "PIML_Figures/PIML_Figures/model/summary.json",
+    "data_N2": "N248_data/3_N248/usrp_mixer_vector_heatmap_20260522_064551_N2/usrp_mixer_vector_heatmap_N2.npz",
+    "data_N4": "N248_data/3_N248/usrp_mixer_vector_heatmap_20260522_065307_N4/usrp_mixer_vector_heatmap_N4.npz",
+    "data_N8": "N248_data/3_N248/usrp_mixer_vector_heatmap_20260522_065857_N8/usrp_mixer_vector_heatmap_N8.npz",
+    "outdir": "PIML_Vector_Figures/run_big",
+    "device": "cpu",
+    "seed": 0,
+    "n_iter_nn": 8000,
+    "n_iter_joint": 4000,
+    "lr_nn": 0.005,
+    "lr_joint_papr": 0.0005,
+    "lr_joint_nn": 0.001,
+    "lam_nn": 0.0001,
+    "lam_delta": 0.005,
+    "lam_smooth": 0.01,
+    "nn_max_db": 6.0,
+    "nn_hidden": [
+      48,
+      48
+    ],
+    "per_N": false
+  }
+}

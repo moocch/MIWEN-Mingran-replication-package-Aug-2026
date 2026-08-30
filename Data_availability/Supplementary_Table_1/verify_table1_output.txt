@@ -1,0 +1,23 @@
+== Supplementary Table 1: the 7 trainable physics parameters + 1 structural choice ==
+PASS  #1 G_max,dB      = -1.84 dB: displayed -1.84, source -1.8437995910644531 -> rounds to -1.84
+PASS  #2 P_LO,sat      = +1.73 dBm: displayed 1.73, source 1.7346782684326172 -> rounds to 1.73
+PASS  #3 beta_LO       = 1.045: displayed 1.045, source 1.0452940464019775 -> rounds to 1.045
+PASS  #4 P_RF,comp     = +4.47 dBm: displayed 4.47, source 4.474578857421875 -> rounds to 4.47
+PASS  #5 beta_RF       = 2.13: displayed 2.13, source 2.132936477661133 -> rounds to 2.13
+PASS  #6 P_noise       = -73.62 dBm: displayed -73.62, source -73.62084197998047 -> rounds to -73.62
+PASS  #7 leak_dB       = -84.25 dB: displayed -84.25, source -84.25154113769531 -> rounds to -84.25
+PASS  #8 turn-on shape = Weibull: displayed 'weibull', source 'weibull'
+
+== Quoted text numbers (Supplementary Note 1 / response letter) ==
+PASS  physics-only RMSE = 3.94 dB: displayed 3.94, source 3.9442319490303217 -> rounds to 3.94
+PASS  full-twin RMSE    = 1.30 dB: displayed 1.30, source 1.3037162225485324 -> rounds to 1.30
+PASS  grid = 43 x 43 = 1,849 points: shape (43, 43), n = 1849
+PASS  consistency: RMSE from twin_predictions.npz (1.303716) == summary.json (1.303716)
+PASS  R^2 = 0.9969 (dB domain): displayed 0.9969, source 0.9968699633359066 -> rounds to 0.9969
+PASS  within +/-2 dB = 90.4 %: displayed 90.4, source 90.42725797728501 -> rounds to 90.4
+
+-- informational --
+      within +/-1 dB          : 67.3 % (letter quotes 67%)
+      measured dynamic range  : 77.43 dB (text quotes 77 dB)
+
+RESULT: all 14 checks PASSED

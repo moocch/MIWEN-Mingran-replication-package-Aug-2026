@@ -1,0 +1,6 @@
+vector_length_N,rmse_ideal_multiplier_dB,rmse_full_PIML_twin_dB,error_reduction_factor
+1,16.53,1.30,12.7
+2,18.71,1.91,9.8
+4,23.12,1.67,13.8
+8,21.61,1.55,13.9
+4096,10.35,0.79,13.1

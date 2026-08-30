@@ -1,0 +1,40 @@
+{
+  "input_npz": "/mnt/user-data/uploads/heatmap_2db.npz",
+  "physics_params": {
+    "lo_shape": "weibull",
+    "G_max_dB": -1.8437995910644531,
+    "conversion_loss_dB": 1.8437995910644531,
+    "P_LO_sat_dBm": 1.7346782684326172,
+    "beta_LO": 1.0452940464019775,
+    "P_RF_comp_dBm": 4.474578857421875,
+    "beta_RF": 2.132936477661133,
+    "P_noise_dBm": -73.62084197998047,
+    "leak_dB": -84.25154113769531
+  },
+  "metrics_db": {
+    "rmse_physics_only": 3.9442319490303217,
+    "rmse_physics_plus_nn": 1.3037162225485324,
+    "mae_physics_plus_nn": 0.8711218024368071
+  },
+  "config": {
+    "npz": "/mnt/user-data/uploads/heatmap_2db.npz",
+    "outdir": "/path/to/piml_run",
+    "device": "cpu",
+    "seed": 0,
+    "n_physics_starts": 24,
+    "n_iter_nn": 6000,
+    "n_iter_joint": 4000,
+    "lr_nn": 0.005,
+    "lr_joint_phys": 0.0005,
+    "lr_joint_nn": 0.001,
+    "lam_nn": 0.0001,
+    "lam_delta": 0.001,
+    "lam_smooth": 0.01,
+    "nn_max_db": 8.0,
+    "nn_hidden": [
+      32,
+      32
+    ],
+    "lo_shape": "weibull"
+  }
+}

@@ -1,0 +1,12 @@
+from PIL import Image
+
+SRC = r"<archive>\202607_MIWEN_v2\V2_Manu\Manuscript_Reproductivity\fig3\fig3_v12_preview.png"
+DST = r"<archive>\202607_MIWEN_v2\figures\fig3g_energy_panel.png"
+
+im = Image.open(SRC)
+print("source size:", im.size)
+w, h = im.size
+# panel g occupies the right-hand column, full height
+box = (int(w * 0.706), 0, w, h)
+im.crop(box).save(DST)
+print("cropped box:", box, "->", DST)

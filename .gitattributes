@@ -1,0 +1,15 @@
+# ---------------------------------------------------------------------------
+# Git LFS: only files that exceed GitHub's 100 MB hard limit are tracked here.
+# Everything else (including the 33 MB and 53 MB .npz archives) stays in plain
+# git, so a normal clone does not consume the account's LFS bandwidth quota.
+# ---------------------------------------------------------------------------
+gtsrb_roi_32x32.npz filter=lfs diff=lfs merge=lfs -text
+
+# Keep binary research artefacts byte-exact (no CRLF translation, no diffing).
+*.npz  binary
+*.npy  binary
+*.pt   binary
+*.zip  binary
+*.pdf  binary
+*.png  binary
+*.blend binary

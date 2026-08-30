@@ -1,0 +1,62 @@
+========================================================================
+Supplementary Note 6 -- comb-encoded campaign: verification
+========================================================================
+
+TIER 1 -- archived bytes in this folder
+
+[1.1a] PASS  frozen rerun: 1187/1200 correct
+[1.1b] PASS  accuracy 98.9167% -> quoted 98.92
+[1.1c] PASS  stored accuracy scalar 0.9892
+[1.1d] PASS  binomial s.e. 0.2988 pts -> quoted +/-0.30
+[1.1e] PASS  calibration tag = 'frozen (no host W@x)'
+[1.2] PASS  img_index identical to battery_random1200_idx.npy (n=1200, GTSRB test indices 901..12567)
+[1.3a] PASS  discordants measured-only-correct=10, digital-only-correct=4 -> quoted '10 versus 4'
+[1.3b] PASS  same-weights digital accuracy 98.4167% -> quoted 98.42
+[1.3c] PASS  delta +0.5000 pts -> quoted +0.50
+[1.3d] PASS  exact McNemar p = 0.17957 -> quoted ~0.18, not significant
+[1.4a] PASS  exact McNemar p(8,1) = 0.03906 -> quoted ~0.04, significant
+[1.4b] PASS  8-vs-1 discordants imply clean-digital 1194/1200 = 99.50% -> quoted 99.50
+[1.4c] PASS  implied delta -0.5833 pts -> quoted -0.58
+[1.5a] PASS  as-run battery 98.8333% (1186/1200)
+[1.5b] PASS  3 prediction flips as-run vs frozen rerun -> quoted 3 of 1,200
+[1.6] PASS  wrapper SIG/0.25 = [0.177, 0.32, 0.102, 0.221] -> quoted [0.177, 0.32, 0.102, 0.221] x 0.25
+[1.7a] PASS  per-column gain vectors (32, 64, 128, 43) = conv32/conv64/dense128/dense43
+[1.7b] PASS  source tag = 's4_random450 (disjoint calibration frame)' (450 disjoint calibration images)
+[1.7c] PASS  note = 'per-column mixer gains; frozen; applied at inference without any digital W@x'
+[1.8] PASS  clean r3plus log: SELECTED ckpt test full 99.05 -> the weights behind the 99.50 battery number
+
+TIER 2 -- optional cross-checks against the read-only frozen archives
+
+[2.1] PASS  battery_digital_preds_extract.npz arrays identical to the 55-MB battery_slim.npz source
+[2.2a] PASS  GTSRB test-cache labels at the battery indices match the archived battery labels
+[2.2b] PASS  clean-trained digital forward: 99.5000% (1194/1200) -> quoted 99.50
+[2.2c] PASS  discordants clean-only-correct=8, measured-only-correct=1 -> quoted '8 versus 1'
+[2.2d] PASS  exact McNemar p = 0.03906 -> quoted ~0.04
+
+DOCUMENTED (platform constants of S6.1/S6.4; source pointers, no asserts)
+  - TX power law P_out[dBm] = 18.0 + (g - 31.5) + 20*log10(a_RMS):
+    P_MAX_DBM_DEFAULT = 18.0 and GAIN_MAX_DB = 31.5 in the frozen core
+    4_gtsrb_confusion_mlpN.py (share_20260712, lines 54/56), with
+    PAPR-aware peak limiting.
+  - 10 MS/s baseband, 5-MHz digital LO offset: USRP_SAMPLE_RATE = 10e6,
+    USRP_LO_OFFSET = 5e6 (same file, lines 45/46).
+  - Matched-filter peak-to-sidelobe acceptance 3.0; inner-product
+    acquisitions measured 28.6-31.4; pilot residual phase-drift slopes
+    < 3.2e-3 rad/slot: session logs / Supplementary Note 4 campaign,
+    not re-derivable from the arrays archived here.
+  - Cascade frames: 16,384-point FFT (610.35 Hz spacing = 1e7/16384),
+    512-sample cyclic prefix, seeded-QPSK sync symbol; comb RX 30 dB
+    gain + 30 dB attenuator; operating point LO -3 dBm / RF -35 dBm
+    (README_provenance.md; P_LO_DBM_DEFAULT / P_RF_DBM_DEFAULT in the
+    frozen core).
+  - Comb construction / Zadoff-Chu precoding equations (S6.4): code in
+    4_gtsrb_confusion_mlpN.py (comb synthesis) at the source; equations
+    are definitional.
+  - FLAG (see README.md): the S6.3(iii) figure 'a conventional
+    signed-activation digital CNN reaches ~99.7-99.8% in the
+    literature' carries NO citation in the SI; it traces only to the
+    repo note docs/notes/2026-08-06_digital_vs_miwen_table.md, which is
+    equally uncited.
+========================================================================
+RESULT: ALL ASSERTIONS PASSED
+========================================================================

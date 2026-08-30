@@ -1,0 +1,77 @@
+==============================================================================
+Supplementary Note 8 text numbers (S8.1 recovery, S8.3 depth controls
+and per-pass budget) + resolution of the two flagged tensions
+==============================================================================
+[source] results_summary.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\_shared_fully_analog_simulation\results\results_summary.json
+[source] link_budget.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\_shared_fully_analog_simulation\results\link_budget.json
+[source] twin_2x2.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\text_numbers\note8_fully_analog\data\twin_2x2.json
+[source] hardware_aware_ablation.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\text_numbers\note8_fully_analog\data\hardware_aware_ablation.json
+[source] paper_numbers.json -> <archive>\202607_MIWEN_v2\Response_Letter&Supplementary_Reproductivity\text_numbers\note8_fully_analog\data\paper_numbers.json
+
+S8.1: link-noise recovery 92.62 -> 93.90 (MNIST), 75.13 -> 87.53
+(from = twin arm of Table 5, ZT-trained weights on the ZH chain;
+ to = ZH-trained weights on the ZH chain, tags MZH_L3 / ZH_L3):
+  MNIST from: twin_2x2 mnist.twin_hardware.acc                   got     92.62  want     92.62  PASS
+  MNIST to: results_summary MZH_L3 acc (mode ZH)                 got     93.90  want     93.90  PASS
+  MNIST to: MZH_L3 std                                           got      0.10  want      0.10  PASS
+  GTSRB from: twin_2x2 gtsrb.twin_hardware.acc                   got     75.13  want     75.13  PASS
+  GTSRB to: results_summary ZH_L3 acc (mode ZH)                  got     87.53  want     87.53  PASS
+  GTSRB to: ZH_L3 std                                            got      0.14  want      0.14  PASS
+  both endpoints share the ZH-chain protocol (repeats=5)         PASS
+S8.3: L=2 gaps 0.22 (94.04 vs 93.82 +- 0.03), 0.87 (87.68 vs
+86.81 +- 0.05) -- tags MZT_L2d/MZH_L2 and ZT_L2d/ZH_L2:
+  MNIST L=2 digital (MZT_L2d, mode ZT)                           got     94.04  want     94.04  PASS
+  MNIST L=2 chain (MZH_L2, mode ZH)                              got     93.82  want     93.82  PASS
+  MNIST L=2 chain std                                            got      0.03  want      0.03  PASS
+  MNIST L=2 gap                                                  got      0.22  want      0.22  PASS
+  GTSRB L=2 digital (ZT_L2d, mode ZT)                            got     87.68  want     87.68  PASS
+  GTSRB L=2 chain (ZH_L2, mode ZH)                               got     86.81  want     86.81  PASS
+  GTSRB L=2 chain std                                            got      0.05  want      0.05  PASS
+  GTSRB L=2 gap                                                  got      0.87  want      0.87  PASS
+S8.3: L=3 gaps 0.40 / 1.30 'main text' -- tags MZT_L3d/MZH_L3,
+ZT_L3d/ZH_L3 (the Fig. 5d pairs 94.30/93.90 and 88.83/87.53):
+  MNIST L=3 digital (MZT_L3d, mode ZT)                           got     94.30  want     94.30  PASS
+  MNIST L=3 gap                                                  got      0.40  want      0.40  PASS
+  GTSRB L=3 digital (ZT_L3d, mode ZT)                            got     88.83  want     88.83  PASS
+  GTSRB L=3 gap                                                  got      1.30  want      1.30  PASS
+S8.3: L=4 collapse 85.02 vs 15.39 +- 0.23 -- tags MZT_L4d/MZH_L4:
+  MNIST L=4 digital (MZT_L4d)                                    got     85.02  want     85.02  PASS
+  MNIST L=4 chain (MZH_L4)                                       got     15.39  want     15.39  PASS
+  MNIST L=4 chain std                                            got      0.23  want      0.23  PASS
+S8.3: per-pass power-return efficiencies (link_budget.json
+<plan>.block_efficiency):
+  MNIST pass 1                                                   got     2.255  want     2.255  PASS
+  MNIST pass 2                                                   got     2.181  want     2.181  PASS
+  MNIST pass 3                                                   got     1.267  want     1.267  PASS
+  GTSRB pass 1                                                   got     2.091  want     2.091  PASS
+  GTSRB pass 2                                                   got     2.115  want     2.115  PASS
+  GTSRB pass 3                                                   got     1.202  want     1.202  PASS
+S8.3: GTSRB link ladder (link_budget.json GTSRB.rows[i].drive_dBm /
+.tone_snr_dB; SI quotes SNRs and pass 4 to 1 decimal):
+  pass 1 drive (dBm)                                             got    -10.00  want    -10.00  PASS
+  pass 1 tone SNR (dB, 1-dec)                                    got     43.04  want     43.00  PASS
+  pass 2 drive (dBm)                                             got    -34.27  want    -34.27  PASS
+  pass 2 tone SNR (dB, 1-dec)                                    got     32.57  want     32.60  PASS
+  pass 3 drive (dBm)                                             got    -58.48  want    -58.48  PASS
+  pass 3 tone SNR (dB, 1-dec)                                    got      8.36  want      8.40  PASS
+  pass 4 drive (dBm, 1-dec; JSON -85.16)                         got    -85.16  want    -85.20  PASS
+  pass 4 tone SNR (dB, 1-dec; JSON -18.31)                       got    -18.31  want    -18.30  PASS
+  'within 0.7 dB of the MNIST plan': max pass-1..3 drive gap     PASS
+
+FLAG (a): 93.90 / 87.53 match no Table 5/6 row -- provenance:
+  paper_numbers: Fig.5d MNIST analog '93.9 +- 0.1 %' = weights MZH_L3, model ZH PASS
+  paper_numbers: Fig.5d MNIST digital '94.3' = weights MZH_L3, model ZT PASS
+  paper_numbers: Fig.5d GTSRB analog '87.53 +- 0.14 %' = weights ZH_L3, model ZH PASS
+  paper_numbers: Fig.5d GTSRB digital '88.83' = weights ZH_L3, model ZT PASS
+  results_summary: MZT_L3d/ZT_L3d reuse the SAME ZH checkpoint (weights field) PASS
+  Table 6 'twin+link noise' row is a DIFFERENT checkpoint family (MZ_L3/Z_L3, mode Z) PASS
+  Table 6 chain == mode-Z evaluation in results_summary (MZ_L3 95.62, Z_L3 86.26) PASS
+  Table 6 digital baselines use mode ZD on MZ_L3/Z_L3 weights (96.07 / 88.29), not mode ZT PASS
+FLAG (b): L=3 gap 0.40/1.30 (S8.3, main text) vs 0.45/2.03 (Table 6):
+  ZH family gap: MZT_L3d - MZH_L3                                got      0.40  want      0.40  PASS
+  Z family drop: MZD_L3 - MZ_L3 (Table 6)                        got      0.45  want      0.45  PASS
+  ZH family gap: ZT_L3d - ZH_L3                                  got      1.30  want      1.30  PASS
+  Z family drop: ZD_L3 - Z_L3 (Table 6)                          got      2.03  want      2.03  PASS
+  the two pairs of gaps come from disjoint checkpoint sets       PASS
+
+RESULT: 50 passed, 0 failed

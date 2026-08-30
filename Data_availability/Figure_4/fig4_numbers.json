@@ -1,0 +1,203 @@
+{
+ "acc_clean_hw": {
+  "value": 5.666666666666667,
+  "n": "34/600",
+  "provenance": "recomputed: 5 clean_arm serial_nn_clean_*.npz chunk preds vs battery_frozen_slim labels"
+ },
+ "acc_twin_hw": {
+  "value": 98.5,
+  "n": "591/600",
+  "provenance": "recomputed: 2 twin_arm serial_nn_twin_*.npz chunk preds vs battery_frozen_slim labels"
+ },
+ "acc_twin_hw_seg1": {
+  "value": 97.66666666666667,
+  "n": "293/300",
+  "provenance": "recomputed battery[0:300]; matches serial_twin_20260824.log FINAL 97.67"
+ },
+ "acc_twin_hw_seg2": {
+  "value": 99.33333333333333,
+  "n": "298/300",
+  "provenance": "recomputed battery[300:600]; matches serial_twin_00_fresh_20260825.log FINAL 99.33"
+ },
+ "acc_clean_hw_seg1": {
+  "value": 6.333333333333333,
+  "n": "19/300",
+  "provenance": "recomputed battery[0:300]; log FINALs 7.33 (0:150), 3.08 (150:215), 12.00 (275:300); 215:275 from crashed-run npz"
+ },
+ "acc_clean_hw_seg2": {
+  "value": 5.0,
+  "n": "15/300",
+  "provenance": "recomputed battery[300:600]; matches serial_clean_00_fresh_20260826.log FINAL 5.00"
+ },
+ "acc_twin_digital": {
+  "value": 98.5,
+  "n": "591/600 (295+296)",
+  "provenance": "seg1 pinned serial_predictions.json twin_under_twin_n300_frame=98.33; seg2 recomputed from digital_pins_seg300600.npz twin_under_twin"
+ },
+ "acc_clean_under_twin_digital": {
+  "value": 0.8333333333333334,
+  "n": "5/600 (2+3)",
+  "provenance": "seg1 pinned serial_predictions.json clean_under_twin_n300=0.6667%; seg2 recomputed from digital_pins_seg300600.npz clean_under_twin"
+ },
+ "acc_clean_ideal_digital_battery1200": {
+  "value": 99.5,
+  "provenance": "audit pin (miwen_serial_frozen_reference.py PINS clean_ideal_bat1200=99.50); not recomputable here (needs gtsrb_roi_32x32.npz full forward)"
+ },
+ "acc_clean_ideal_digital_full12630": {
+  "value": 99.05,
+  "provenance": "audit pin (miwen_serial_frozen_reference.py PINS clean_ideal_full)"
+ },
+ "acc_clean_ideal_digital_seg2": {
+  "value": 100.0,
+  "n": "300/300",
+  "provenance": "recomputed from digital_pins_seg300600.npz clean_ideal vs labels"
+ },
+ "twin_hw_vs_digital_agreement_seg2": {
+  "value": 99.0,
+  "n": "297/300",
+  "provenance": "identical per-image prediction, twin hw vs pinned twin_under_twin digital, images 300-599 (seg1 digital preds archived only as a pinned %)"
+ },
+ "clean_hw_vs_clean_under_twin_agreement_seg2": {
+  "value": 1.6666666666666667,
+  "n": "5/300",
+  "provenance": "same comparison for the clean arm"
+ },
+ "clean_collapse_class": {
+  "value": 12,
+  "n": "x590 of 600",
+  "provenance": "mode of merged clean-arm hardware predictions"
+ },
+ "twin_top_class": {
+  "value": 1,
+  "n": "x42",
+  "provenance": "mode of merged twin-arm hardware predictions"
+ },
+ "enob_overall_naive_bits": {
+  "value": 2.532144605195638,
+  "provenance": "serial_enob_00_20260824.json (256-pair (0,0) capture, FS-referred)"
+ },
+ "enob_overall_twin_bits": {
+  "value": 4.378062780185966,
+  "provenance": "serial_enob_00_20260824.json, twin-inverted"
+ },
+ "twin_rmse_holdout_db": {
+  "value": 0.12445939425403263,
+  "provenance": "serial_twin_model.json (20% held-out cells of CW map fit region)"
+ },
+ "twin_rmse_fitregion_recomputed_db": {
+  "value": 0.105968507522816,
+  "provenance": "recomputed here: full model (product+leak) vs heatmap_unpadded_20260814 fit-region cells"
+ },
+ "twin_knee_lo_dbm": {
+  "value": 6.384010834869996,
+  "provenance": "serial_twin_model.json (reported-not-gated)"
+ },
+ "twin_knee_rf_dbm": {
+  "value": 9.046102605296504,
+  "provenance": "serial_twin_model.json (reported-not-gated)"
+ },
+ "twin_duty_db": {
+  "value": -3.05,
+  "provenance": "serial_twin_model.json (slot duty offset used in fit G3/ENOB, not in twin_matmul)"
+ },
+ "twin_gates": {
+  "value": {
+   "G1": true,
+   "G2": true,
+   "G3": true
+  },
+  "provenance": "serial_twin_model.json"
+ },
+ "twin_probe_hash_ok": {
+  "value": true,
+  "provenance": "sha256[:16] of product_db on frozen 8x8 probe grid vs pin 5cb94af8cc5b257a"
+ },
+ "ladder_powers_dbm": {
+  "value": [
+   -9.0,
+   -3.0,
+   0.0,
+   3.0,
+   7.0
+  ],
+  "provenance": "serial_stationA_20260823.npz meta points (symmetric, both ports)"
+ },
+ "ladder_lin_resid_mean": {
+  "value": [
+   0.2078487871856366,
+   0.4074343309536931,
+   0.49872810547900637,
+   0.5758283507831972,
+   0.6565144206608491
+  ],
+  "provenance": "recomputed per drive: rms(yhat-g*xw)/rms(g*xw), mean over 2 draws x 2 reps"
+ },
+ "ladder_gain_abs_mean": {
+  "value": [
+   0.030830657434862414,
+   0.0683384381142552,
+   0.09029478670304002,
+   0.11327947932139706,
+   0.14515593296969787
+  ],
+  "provenance": "recomputed per drive: |vdot(xw,yhat)/vdot(xw,xw)|"
+ },
+ "cal_clean": {
+  "value": {
+   "g_l1": 0.8906948832504392,
+   "g_l2": 2.594296912873101,
+   "g_l3": 3.370970767692971,
+   "g_l4": 0.812795790383252,
+   "s_l1": [
+    1.8319390194231915,
+    3.8742711189779664
+   ],
+   "s_l2": [
+    5.095778037761257,
+    5.085145652459642
+   ],
+   "s_l3": [
+    6.901212393269744,
+    5.685451230106899
+   ],
+   "s_l4": [
+    2.3971506153995135,
+    5.208573927977214
+   ]
+  },
+  "provenance": "serial_cal_clean_20260823.npz (frozen per-layer scalar gain g_l* and slot-stream RMS pair s_l*)"
+ },
+ "cal_twin": {
+  "value": {
+   "g_l1": 2.8102167560845415e-07,
+   "g_l2": 2.790678859784296e-07,
+   "g_l3": 2.632007311097542e-07,
+   "g_l4": 2.3102936286190927e-07,
+   "s_l1": [
+    1.8319390194231915,
+    4.587367676369443
+   ],
+   "s_l2": [
+    5.972353528274266,
+    8.89033980681119
+   ],
+   "s_l3": [
+    10.004602601147349,
+    9.66995954088722
+   ],
+   "s_l4": [
+    5.850268991716677,
+    4.9190740429115465
+   ]
+  },
+  "provenance": "serial_cal_twin_20260823.npz"
+ },
+ "battery_slim_stored_preds_acc": {
+  "value": 98.91666666666666,
+  "provenance": "battery_frozen_slim.npz preds vs labels (comb-era frozen-calibration record; NOT clean-ideal digital)"
+ },
+ "n_images": {
+  "value": 600,
+  "provenance": "battery_random1200_idx.npy[0:600]; both arms identical set (asserted)"
+ }
+}
