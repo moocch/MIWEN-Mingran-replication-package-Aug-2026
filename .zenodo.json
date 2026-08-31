@@ -1,16 +1,40 @@
 {
   "upload_type": "software",
-  "title": "Machine intelligence on wireless edge networks \u2014 data and code",
+  "title": "Machine intelligence on wireless edge networks — data and code",
   "description": "<p>Data and code underlying the figures, tables and reported numbers of the manuscript <em>Machine intelligence on wireless edge networks</em> (Jia, Vadlamani, Sulimany, Morag, Gao, Wang, Chen and Englund).</p><p>The package is split into the two trees that the <em>Data availability</em> and <em>Code availability</em> statements refer to:</p><ul><li><code>Data_availability/</code> &mdash; measured and simulated source data behind every main-text figure, supplementary figure, supplementary table and supplementary note, plus the upstream acquisition and training campaigns under <code>raw/</code>.</li><li><code>Code_availability/</code> &mdash; the acquisition, analysis and figure-generation code, mirroring the data tree exactly: <code>figure_scripts/</code> pairs with the per-figure data folders and <code>pipelines/</code> pairs with <code>Data_availability/raw/</code>.</li></ul><p>Every script resolves its own data folder through <code>_paths.data_dir(__file__)</code>, so a fresh clone runs without configuration. All simulations are CPU-only and use fixed seeds.</p><p><strong>Licensing is split:</strong> the source code is released under the MIT License (see <code>LICENSE</code>) and the data, figures and documentation under CC BY 4.0 (see <code>LICENSE-DATA</code>). The GTSRB and MNIST caches redistributed here derive from their original public distributions and remain subject to those datasets' own terms.</p><p>One file, <code>Data_availability/raw/fully_analog_simulation/data/gtsrb_roi_32x32.npz</code> (127 MB), is stored with Git LFS in the GitHub repository; it is included in full in this archive.</p>",
   "creators": [
-    {"name": "Jia, Mingran", "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"},
-    {"name": "Vadlamani, Sri Krishna", "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"},
-    {"name": "Sulimany, Kfir", "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"},
-    {"name": "Morag, Jonathan", "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"},
-    {"name": "Gao, Zhihui", "affiliation": "Department of Electrical and Computer Engineering, Duke University, Durham, NC 27708, USA"},
-    {"name": "Wang, Hanfeng", "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"},
-    {"name": "Chen, Tingjun", "affiliation": "Department of Electrical and Computer Engineering, Duke University, Durham, NC 27708, USA"},
-    {"name": "Englund, Dirk", "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"}
+    {
+      "name": "Jia, Mingran",
+      "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+    },
+    {
+      "name": "Vadlamani, Sri Krishna",
+      "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+    },
+    {
+      "name": "Sulimany, Kfir",
+      "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+    },
+    {
+      "name": "Morag, Jonathan",
+      "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+    },
+    {
+      "name": "Gao, Zhihui",
+      "affiliation": "Department of Electrical and Computer Engineering, Duke University, Durham, NC 27708, USA"
+    },
+    {
+      "name": "Wang, Hanfeng",
+      "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+    },
+    {
+      "name": "Chen, Tingjun",
+      "affiliation": "Department of Electrical and Computer Engineering, Duke University, Durham, NC 27708, USA"
+    },
+    {
+      "name": "Englund, Dirk",
+      "affiliation": "Research Laboratory of Electronics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+    }
   ],
   "license": "cc-by-4.0",
   "access_right": "open",
@@ -27,5 +51,5 @@
     "energy-efficient inference",
     "replication package"
   ],
-  "notes": "Replication package for the August 2026 submission. Code is MIT-licensed; data, figures and documentation are CC BY 4.0. See LICENSE and LICENSE-DATA in the archive."
+  "notes": "Code is MIT-licensed; data, figures and documentation are CC BY 4.0. See LICENSE and LICENSE-DATA in the archive."
 }
