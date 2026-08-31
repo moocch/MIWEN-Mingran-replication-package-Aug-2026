@@ -1,0 +1,73 @@
+cff-version: 1.2.0
+message: >-
+  If you use this data and code package, please cite it using the metadata
+  below.
+title: Machine intelligence on wireless edge networks — data and code
+abstract: >-
+  Data and code underlying the figures, tables and reported numbers of the
+  manuscript "Machine intelligence on wireless edge networks". The package is
+  split into a Data_availability tree (measured and simulated source data for
+  every figure, table and note, plus the upstream acquisition and training
+  campaigns) and a Code_availability tree (acquisition, analysis and
+  figure-generation code) that mirror each other exactly.
+type: software
+authors:
+  - given-names: Mingran
+    family-names: Jia
+    affiliation: >-
+      Research Laboratory of Electronics, Massachusetts Institute of
+      Technology, Cambridge, MA 02139, USA
+  - given-names: Sri Krishna
+    family-names: Vadlamani
+    affiliation: >-
+      Research Laboratory of Electronics, Massachusetts Institute of
+      Technology, Cambridge, MA 02139, USA
+  - given-names: Kfir
+    family-names: Sulimany
+    affiliation: >-
+      Research Laboratory of Electronics, Massachusetts Institute of
+      Technology, Cambridge, MA 02139, USA
+  - given-names: Jonathan
+    family-names: Morag
+    affiliation: >-
+      Research Laboratory of Electronics, Massachusetts Institute of
+      Technology, Cambridge, MA 02139, USA
+  - given-names: Zhihui
+    family-names: Gao
+    affiliation: >-
+      Department of Electrical and Computer Engineering, Duke University,
+      Durham, NC 27708, USA
+  - given-names: Hanfeng
+    family-names: Wang
+    affiliation: >-
+      Research Laboratory of Electronics, Massachusetts Institute of
+      Technology, Cambridge, MA 02139, USA
+  - given-names: Tingjun
+    family-names: Chen
+    affiliation: >-
+      Department of Electrical and Computer Engineering, Duke University,
+      Durham, NC 27708, USA
+  - given-names: Dirk
+    family-names: Englund
+    email: englund@mit.edu
+    affiliation: >-
+      Research Laboratory of Electronics, Massachusetts Institute of
+      Technology, Cambridge, MA 02139, USA
+repository-code: >-
+  https://github.com/moocch/MIWEN-Mingran-replication-package-Aug-2026
+license:
+  - MIT
+  - CC-BY-4.0
+version: 1.0.0
+date-released: '2026-08-31'
+keywords:
+  - wireless edge computing
+  - analog computing
+  - in-physics computation
+  - machine learning inference
+  - digital twin
+  - physics-informed machine learning
+  - radio-frequency photonics
+  - frequency comb
+  - energy-efficient inference
+  - replication package
