@@ -53,8 +53,7 @@ authors:
     affiliation: >-
       Research Laboratory of Electronics, Massachusetts Institute of
       Technology, Cambridge, MA 02139, USA
-repository-code: >-
-  https://github.com/moocch/MIWEN-Mingran-replication-package-Aug-2026
+repository-code: 'https://github.com/moocch/miwen-data-and-code'
 license:
   - MIT
   - CC-BY-4.0
