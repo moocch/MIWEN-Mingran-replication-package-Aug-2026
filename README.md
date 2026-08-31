@@ -135,6 +135,14 @@ file arrives as a small text pointer and the fully analog simulation will not
 run. It can also be rebuilt from the public GTSRB distribution with
 `Code_availability/pipelines/fully_analog_simulation/prepare_gtsrb.py`.
 
+**If you obtained this package from the Zenodo archive rather than by cloning
+GitHub, this one file is a 134-byte LFS pointer, not the data.** GitHub's
+automatically generated release archives do not resolve Git LFS objects, so the
+archived snapshot carries the pointer in its place. Obtain the file either by
+cloning the GitHub repository with Git LFS installed, or by rebuilding it from
+the public GTSRB distribution with the `prepare_gtsrb.py` script named above.
+It is the only affected file — every other file in the archive is complete.
+
 ---
 
 ## 5. License
