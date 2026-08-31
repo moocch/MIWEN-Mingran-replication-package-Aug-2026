@@ -1,0 +1,86 @@
+{
+ "convention": {
+  "eta_radio": 0.1,
+  "e_adc_J": 1e-12,
+  "e_dig_J": 1e-12,
+  "fee_per_answer_J": 1.4e-11,
+  "h100_J_per_realmac": 7e-14,
+  "t_per_realmac_s": 1.17e-07,
+  "model_curve": "e_fJ(N) = e1_flat_fJ + 14000/(4N)",
+  "e1_flat_fJ": 0.5382
+ },
+ "sec_d_reproduction": [
+  {
+   "N": 4096,
+   "px_nW": 0.5260750534188035,
+   "px_source": "derived from 1.47 fJ",
+   "e1_fJ": 0.6155078125,
+   "fee_fJ": 0.8544921875,
+   "total_fJ_per_realmac": 1.47
+  },
+  {
+   "N": 65536,
+   "px_nW": 0.46,
+   "px_source": "paper",
+   "e1_fJ": 0.5382,
+   "fee_fJ": 0.05340576171875,
+   "total_fJ_per_realmac": 0.59160576171875
+  }
+ ],
+ "comb_nn": {
+  "operating_point_dbm": {
+   "lo": -3.0,
+   "rf": -65.0
+  },
+  "airtime_per_image_s": 2.8366272,
+  "real_macs_per_image": 28847616,
+  "answers_per_image": 31659,
+  "e1_per_image_nJ": 8.97020282478598,
+  "fee_per_image_nJ": 443.22600000000006,
+  "total_per_image_nJ": 452.19620282478604,
+  "total_fJ_per_realmac": 15.675340479601019,
+  "vs_h100": 4.465612730459919,
+  "fig3g_overlay_points": [
+   {
+    "label": "conv1",
+    "N": 75,
+    "total_fJ_per_realmac": 46.98
+   },
+   {
+    "label": "conv2",
+    "N": 800,
+    "total_fJ_per_realmac": 4.69
+   },
+   {
+    "label": "dense1",
+    "N": 1600,
+    "total_fJ_per_realmac": 2.5
+   },
+   {
+    "label": "dense2",
+    "N": 128,
+    "total_fJ_per_realmac": 27.65
+   },
+   {
+    "label": "network_aggregate",
+    "N": 228,
+    "total_fJ_per_realmac": 15.68
+   }
+  ]
+ },
+ "serial_nn": {
+  "operating_point_dbm": {
+   "lo": -10.0,
+   "rf": -24.0
+  },
+  "airtime_per_image_s": 23.0780928,
+  "e1_per_image_uJ": 918.7554226379037,
+  "total_pJ_per_realmac": 31.86393803348962,
+  "vs_h100_above": 455.1991147641374,
+  "readout_convention": "row-rate integrate-and-dump (6 conv + 8 ops per answer); as-fielded per-sample capture adds ~16 pJ/realMAC"
+ },
+ "notes": [
+  "Client-side ledger only: LO/weight broadcast, DAC synthesis, static transceiver power and SDR wall-plug excluded (Sec. II D conventions).",
+  "Comb energy is image-independent by construction (frame-RMS drive normalization); serial e1 varies per image (frozen per-layer drive scales) and carries no error bar here."
+ ]
+}

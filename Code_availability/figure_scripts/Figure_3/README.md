@@ -17,6 +17,19 @@ live from `data/ip_optimized_N65536_20260826.npz` (printed at every run; confirm
 this folder; the regenerated `fig3_v12_preview.png` is **pixel-identical to the published one
 (0 / 10,520,103 differing pixels)**, and every zero-tolerance assert inside the script passed.
 
+**2026-08-31 script revision (green CNN inference overlay):** panel g now also prices the
+comb-encoded GTSRB CNN of Fig. 4 by the same Eq.-(energy) accounting at its as-fielded
+operating point (P_LO, P_RF) = (−3, −65) dBm at the mixer: open green circles, the four layers
+at their inner-product lengths (N = 75 / 128 / 800 / 1600 → 46.98 / 27.65 / 4.69 / 2.50 fJ per
+real MAC); green star, the full-CNN aggregate at the answer-averaged N ≈ 228 (452 nJ/image =
+**15.7 fJ per real MAC, 4.5× below H100**). The overlay is recomputed live from
+`energy_budget_nn_results.json` (rung3-session energy audit; provenance and audit code in
+`../../pipelines/energy_budget_nn/`, artifacts in `Data_availability/raw/energy_budget_nn/`)
+and **asserted** against the exported point values. **Verified 2026-08-31:** re-executed in
+this package from the archived data — the regenerated `fig3_v12_preview.png` is
+**pixel-identical to the published one (0 / 10,520,103 differing pixels)**, and every assert
+(including the five new CNN-overlay asserts) passed.
+
 ## Data files actually loaded by the script (all four MD5-verified against their campaign originals)
 
 | file (`data/`) | role | origin |
@@ -25,6 +38,7 @@ this folder; the regenerated `fig3_v12_preview.png` is **pixel-identical to the 
 | `gr_ip_scatter_N4096_20260810.npz` | raw measured N = 4096 campaign (2026-08-10 01:19:15) — **panel g only** (energy point 1.47 fJ) | `V2\inner_product_4096_655936\upload\...N4096\gr_fig3c_ip_scatter.npz` (MD5 identical) |
 | `ip_optimized_N65536_20260826.npz` | 2026-08-26 out-of-sample correction results (5-fold CV; before/after products, RMSE/ENOB per capture) | `V2\inner_product_4096_655936\output\files.zip::inner_product_optimized_N65536.npz` (MD5 identical) |
 | `twin_predictions_N1.npz` | scalar 43x43 three-tier surfaces (measured / physics-only / full twin) | scalar PIML twin training run (chain archived in `c/upstream_measured_data_and_twin_code`) |
+| `energy_budget_nn_results.json` | GTSRB-CNN client-energy audit — **panel g green overlay** (per-layer points + full-CNN star; airtime, MAC and answer counts frozen as primitives) | `QPG-MIT/MIWEN_Mingran` @ `handoff/rung3-session`, `analysis/energy_budget_nn.py` (byte-identical copy; audit code archived in `../../pipelines/energy_budget_nn/`) |
 
 `data/` additionally holds `twin_predictions_N{2,4,8,4096}.npz` — **not** fig3 inputs; they are the
 shim read by `../Code_availability/figure_scripts/Figure_2/fig2_v3_twin.py` (see `data/README_repro_shim.md`) — and, since the
@@ -46,7 +60,7 @@ every value exact, incl. the 0.98×/1.01× floor ratios and the 0.4-dB tuning-ca
 | d | N = 65,536 inner products before/after correction, 15 dB (0.064 → 0.036, 1.8×) | measured | acquisition → raw npz → 2026-08-26 correction pipeline → `ip_optimized_N65536_20260826.npz`; full chain in `d/` |
 | e | same at 25 dB (0.056 → 0.017, 3.3×) | measured | identical chain — see `d/` (panel index 1) |
 | f | RMSE vs SNR + measured guard-bin noise floor 1/√(27·SNR) | measured | same two files as d/e; floor computed live from guard-bin fields |
-| g | client-side energy per real MAC (1.47 fJ @ N=4096, 0.59 fJ @ N=65,536; H100 line; Landauer strip) | measured + accounting model | raw 25-dB operating points of both campaign npz → Eq. (energy) accounting of `g/fig5_energy_package/` (Gao et al. benchmark methodology); the figure script recomputes and **asserts** every number from the raw files |
+| g | client-side energy per real MAC (1.47 fJ @ N=4096, 0.59 fJ @ N=65,536; green CNN overlay: four layer circles + full-CNN star, 15.7 fJ/MAC; H100 line; Landauer strip) | measured + accounting model | raw 25-dB operating points of both campaign npz → Eq. (energy) accounting of `g/fig5_energy_package/` (Gao et al. benchmark methodology); CNN overlay from `energy_budget_nn_results.json` (rung3-session audit); the figure script recomputes and **asserts** every number from the raw files and the JSON primitives |
 
 ## How to reproduce
 

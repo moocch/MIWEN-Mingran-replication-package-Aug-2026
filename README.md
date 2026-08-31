@@ -39,6 +39,7 @@ Data_availability/          measured and simulated data
     comb_GTSRB_campaign/             frequency-comb GTSRB inference battery
     serial_hardware_campaign/        serial hardware-aware training and capture
     energy_package/                  client-side energy model and its inputs
+    energy_budget_nn/                GTSRB-CNN client-energy audit (Fig. 3g overlay)
     fully_analog_simulation/         fully analog cascade: code, weights, results
     Figure_1/ ... Figure_5/          per-panel material specific to one figure
 
@@ -68,7 +69,7 @@ configured or edited to run them from a fresh clone.
 |---|---|---|---|
 | **Fig. 1** — concept and theory | `figure_scripts/Figure_1/fig1_compose_v3.py` | `Figure_1/` | `raw/scalar_PIML_calibration/`, `raw/Figure_1/` |
 | **Fig. 2** — digital twin (a–k) | `figure_scripts/Figure_2/fig2_v3_twin.py` | `Figure_2/`, `Figure_3/` | `raw/vector_heatmaps_N2N4N8/`, `raw/vector_heatmaps_N4096/`, `raw/twin_calibration_N4096/` |
-| **Fig. 3** — payoff and energy (a–g) | `figure_scripts/Figure_3/fig3_v12_payoff.py` | `Figure_3/` | `raw/ip_scatter_sweep/`, `raw/energy_package/`, `raw/twin_calibration_N4096/` |
+| **Fig. 3** — payoff and energy (a–g) | `figure_scripts/Figure_3/fig3_v12_payoff.py` | `Figure_3/` | `raw/ip_scatter_sweep/`, `raw/energy_package/`, `raw/energy_budget_nn/`, `raw/twin_calibration_N4096/` |
 | **Fig. 4** — CNN on a passive mixer (a–e) | `figure_scripts/Figure_4/fig4_v6.py` | `Figure_4/` | `raw/comb_GTSRB_campaign/`, `raw/serial_hardware_campaign/` |
 | **Fig. 5** — fully analog cascade (a–d) | `figure_scripts/Figure_5/fig5_analog_v3.py` | `Figure_5/` | `raw/fully_analog_simulation/` |
 

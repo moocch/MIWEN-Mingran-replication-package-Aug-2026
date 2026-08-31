@@ -72,3 +72,24 @@ Outcomes:
   response-letter figure.
 - Re-running `crop_fig3g.py` reproduces the published crop **byte-for-byte**
   (identical MD5), so no pixel-level comparison was necessary.
+
+## Update 2026-08-31 — green CNN inference overlay
+
+Manuscript Fig. 3g gained the green GTSRB-CNN inference overlay (four layer
+circles + full-CNN star, 15.7 fJ per real MAC, 4.5× below H100; see
+`../Figure_3/README.md` and `../../pipelines/energy_budget_nn/`), so the
+manuscript preview, the response-letter figure, and this folder's chain were
+regenerated. The crop step is unchanged (same script, same crop box
+`(3083, 0, 4367, 2409)`).
+
+Verification (2026-08-31) — the MD5 table above documents the 2026-08-29
+pre-overlay version; the current files are:
+
+| File | MD5 |
+|---|---|
+| `source_from_manuscript_fig3_preview.png` = frozen archive `fig3\fig3_v12_preview.png` = `Data_availability/Figure_3/fig3_v12_preview.png` | `2f07993ccd3bb9b82e08383079e0c3ac` |
+| `published_fig3g_energy_panel.png` = live `figures\fig3g_energy_panel.png` | `6e1a7a9763d853120603f27e4d5042a2` |
+| `reproduced/fig3g_energy_panel.png` (output of `crop_fig3g.py`, re-run 2026-08-31) | `6e1a7a9763d853120603f27e4d5042a2` |
+
+Re-running `crop_fig3g.py` again reproduces the published crop
+**byte-for-byte**.

@@ -31,15 +31,19 @@ fig3_v10 (published) and fig3_v11 (237.5-mm trial) are untouched.
        real MAC vs N — e_ip = e1 + e2 + e3 model curve, the flat radio
        floor e1, the 1/N read-out fees e2 and e3, the H100 reference
        (70 fJ/MAC), the two measured triangles (1.47 fJ/MAC at N = 4096,
-       48x below H100; 0.59 fJ/MAC at N = 65,536, 119x below), and the
-       coincident Landauer = thermodynamic floor at 2-bit ENOB
-       (11.5 zJ/MAC) in a broken-axis strip.
+       48x below H100; 0.59 fJ/MAC at N = 65,536, 119x below), the
+       GTSRB CNN inference of Fig. 4 priced by the same accounting
+       (green: the four layers at their inner-product lengths, and the
+       whole-network star at 15.7 fJ/MAC, 4.5x below H100; rung3-session
+       energy audit), and the coincident Landauer = thermodynamic floor
+       at 2-bit ENOB (11.5 zJ/MAC) in a broken-axis strip.
 
 Data (fig3/data/):
   gr_ip_scatter_N65536_20260810.npz  raw campaign, N = 65,536 (also g)
   gr_ip_scatter_N4096_20260810.npz   raw campaign, N = 4096 (g only)
   ip_optimized_N65536_20260826.npz   twin-corrected, N = 65,536
   twin_predictions_N1.npz            scalar three-tier residuals (v8)
+  energy_budget_nn_results.json      rung3-session CNN energy audit (g)
 
 Output: fig3_v12_preview.pdf / .png / .svg / _small.png  (184.9 x 102 mm;
 ink bounds symmetric at ~4.1 mm per side, prints at 96.6 % of drawn size
@@ -236,6 +240,41 @@ for name, got, want in [
         ("x vs H100 (N=4096)", H100 / EIP0, 47.7),
         ("limit @2 bit [zJ]", E_LIMIT * 1e21, 11.48)]:
     assert abs(got - want) <= 0.01 * want, f"energy check drifted: {name}"
+
+# GTSRB CNN inference overlay (the Fig. 4 comb network priced by the same
+# Eq.-(energy) accounting) — rung3-session energy audit of the fielded
+# demonstration (QPG-MIT/MIWEN_Mingran @ handoff/rung3-session,
+# analysis/energy_budget_nn.py -> energy_budget_nn_results.json, copied
+# into data/). Device-plane operating point (P_LO, P_RF) = (-3, -65) dBm,
+# the frozen-battery run as physically delivered; airtime 2.8366272 s per
+# image from the fielded frame planner (1,628 symbols + 3.1 % sync);
+# client pays the data comb only. Every layer pays the same flat radio
+# term e1 per real MAC (0.31 fJ at -65 dBm — slightly below the curve's
+# criterion-tuned 0.534-fJ floor, invisible at these fee-dominated
+# lengths) plus the fixed 14-pJ read-out fee amortized over its own
+# inner-product length, so the four layers follow the model curve's 1/N
+# fee scaling at N = 75 ... 1600 and the whole network aggregates to
+# 15.7 fJ/realMAC at the answer-averaged N ~ 228 — 4.5x below H100.
+with open(os.path.join(D, "energy_budget_nn_results.json")) as fh:
+    NNJ = json.load(fh)["comb_nn"]
+assert NNJ["operating_point_dbm"] == {"lo": -3.0, "rf": -65.0}
+NN_RMAC = NNJ["real_macs_per_image"]              # 28,847,616 real MACs
+NN_ANS = NNJ["answers_per_image"]                 # 31,659 inner products
+E1_NN = (1e-3 * 10.0 ** (-65.0 / 10.0)            # 0.31 fJ per real MAC
+         * NNJ["airtime_per_image_s"] / ETA_RADIO / NN_RMAC)
+FEE_ANS = N_ADC * EADC + N_DIG * EDIG             # 14 pJ per answer
+NN_PTS, NN_AGG = [], None
+for p in NNJ["fig3g_overlay_points"]:
+    if p["label"] == "network_aggregate":
+        assert p["N"] == round(NN_RMAC / (4.0 * NN_ANS))
+        got = E1_NN + NN_ANS * FEE_ANS / NN_RMAC
+        NN_AGG = (p["N"], got)
+    else:
+        got = E1_NN + FEE_ANS / (4.0 * p["N"])
+        NN_PTS.append((p["N"], got))
+    assert abs(got - p["total_fJ_per_realmac"] * 1e-15) <= 0.01 * got, \
+        f"CNN energy check drifted: {p['label']}"
+assert abs(H100 / NN_AGG[1] - NNJ["vs_h100"]) <= 0.01 * NNJ["vs_h100"]
 
 # ------------------------------------------------------------------ figure --
 fig = plt.figure(figsize=(FIG_W * MM, FIG_H * MM))
@@ -478,6 +517,7 @@ for s in ("top", "right"):
 
 # ---------------- g: client-side energy per real MAC (two rows tall) --------
 C_E_OR, C_E_PK, C_E_PU, C_E_CY = "#E07A2D", "#C44E96", "#7A5AA6", "#13A7B8"
+C_E_GN, C_E_GNL = "#2E7D32", "#66BB6A"          # CNN inference overlay
 AX_G = axmm(145.0, 22.5, 33.5, 75)    # energy curves
 AX_G2 = axmm(145.0, 8.0, 33.5, 12)    # broken-axis limit strip
 for a in (AX_G, AX_G2):
@@ -504,6 +544,12 @@ AX_G.plot(N_grid_g, e3_curve, color=C_E_PU, lw=1.0, ls=(0, (1.0, 1.4)),
 AX_G.plot([EN0, EN1], [EIP0, EIP1], marker="v", ms=5.5, mfc="#F3B06C",
           mec=C_E_OR, mew=1.0, ls="none", zorder=7,
           label="experiment (this work)")
+AX_G.plot([n for n, _ in NN_PTS], [e for _, e in NN_PTS], marker="o",
+          ms=3.4, mfc="white", mec=C_E_GN, mew=0.9, ls="none", zorder=7,
+          label="GTSRB CNN layers (Fig. 4)")
+AX_G.plot([NN_AGG[0]], [NN_AGG[1]], marker="*", ms=8.5, mfc=C_E_GNL,
+          mec=C_E_GN, mew=0.7, ls="none", zorder=8,
+          label=f"full CNN: {NN_AGG[1] * 1e15:.1f} fJ/MAC")
 
 AX_G.annotate(f"$N$ = 4096\n{EIP0 * 1e15:.2f} fJ/MAC\n"
               f"{H100 / EIP0:.0f}$\\times$ vs H100",
@@ -571,3 +617,7 @@ print(f"  energy   N=4096  e_ip={EIP0 * 1e15:.3f} fJ/MAC "
       f"({H100 / EIP0:.1f}x below H100)   N=65536  "
       f"e_ip={EIP1 * 1e15:.3f} fJ/MAC ({H100 / EIP1:.1f}x below H100)  "
       f"floor e1={E1_FLOOR * 1e15:.3f} fJ  limit={E_LIMIT * 1e21:.2f} zJ")
+print("  CNN (g)  " + "  ".join(f"N={n} {e * 1e15:.2f}fJ"
+                                for n, e in NN_PTS)
+      + f"  |  network N~{NN_AGG[0]} {NN_AGG[1] * 1e15:.2f} fJ/MAC "
+      f"({H100 / NN_AGG[1]:.1f}x below H100)")
