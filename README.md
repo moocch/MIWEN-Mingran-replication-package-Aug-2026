@@ -14,8 +14,6 @@ Data and code underlying the figures, tables and reported numbers of
 >  
 > Correspondence: englund@mit.edu
 
-**Snapshot:** August 2026 submission.
-
 ---
 
 ## 1. Layout
