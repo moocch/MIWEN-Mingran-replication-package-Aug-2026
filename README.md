@@ -1,5 +1,7 @@
 # Machine intelligence on wireless edge networks — data and code
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22196371.svg)](https://doi.org/10.5281/zenodo.22196371)
+
 Data and code underlying the figures, tables and reported numbers of
 
 > **Machine intelligence on wireless edge networks**  
