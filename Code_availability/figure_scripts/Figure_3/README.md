@@ -38,7 +38,7 @@ this package from the archived data — the regenerated `fig3_v12_preview.png` i
 | `gr_ip_scatter_N4096_20260810.npz` | raw measured N = 4096 campaign (2026-08-10 01:19:15) — **panel g only** (energy point 1.47 fJ) | `V2\inner_product_4096_655936\upload\...N4096\gr_fig3c_ip_scatter.npz` (MD5 identical) |
 | `ip_optimized_N65536_20260826.npz` | 2026-08-26 out-of-sample correction results (5-fold CV; before/after products, RMSE/ENOB per capture) | `V2\inner_product_4096_655936\output\files.zip::inner_product_optimized_N65536.npz` (MD5 identical) |
 | `twin_predictions_N1.npz` | scalar 43x43 three-tier surfaces (measured / physics-only / full twin) | scalar PIML twin training run (chain archived in `c/upstream_measured_data_and_twin_code`) |
-| `energy_budget_nn_results.json` | GTSRB-CNN client-energy audit — **panel g green overlay** (per-layer points + full-CNN star; airtime, MAC and answer counts frozen as primitives) | `QPG-MIT/MIWEN_Mingran` @ `handoff/rung3-session`, `analysis/energy_budget_nn.py` (byte-identical copy; audit code archived in `../../pipelines/energy_budget_nn/`) |
+| `energy_budget_nn_results.json` | GTSRB-CNN client-energy audit — **panel g green overlay** (per-layer points + full-CNN star; airtime, MAC and answer counts frozen as primitives) | rung3-session audit of the lab repository (`QPG-MIT/MIWEN_Mingran` @ `handoff/rung3-session`, `analysis/`), archived scoped to the comb encoding; audit code in `../../pipelines/energy_budget_nn/` |
 
 `data/` additionally holds `twin_predictions_N{2,4,8,4096}.npz` — **not** fig3 inputs; they are the
 shim read by `../Code_availability/figure_scripts/Figure_2/fig2_v3_twin.py` (see `data/README_repro_shim.md`) — and, since the

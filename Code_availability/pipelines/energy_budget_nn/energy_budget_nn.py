@@ -14,8 +14,8 @@ Eq. (5) convention (benchmark methodology of ref [31]):
 Every constant is tagged [paper] (stated in the 2026-08-31 draft),
 [repo] (from committed code/logs), or [derived] (computed here).
 
-Run directly for the console summary; `make_energy_report.py` imports the
-compute functions below and typesets the same numbers into a PDF.
+Run directly for the console summary. Public-archive variant: the
+comb-encoding audit — the encoding priced in the paper's Fig. 3g.
 """
 import math
 import sys
@@ -32,7 +32,6 @@ H100 = 70e-15             # [paper] H100 arithmetic energy, fJ/real MAC
 FS = 10e6                 # [repo] miwen_serial_frozen_reference.py / core
 L, CP = 16384, 512        # [repo] comb FFT length and cyclic prefix
 T_SYM = (L + CP) / FS     # [derived] 1.6896 ms per OFDM symbol
-T_SLOT = 32 / FS          # [repo] serial slot: 32 samples = 3.2 us
 
 T_PER_RMAC = 117e-9       # [paper] "every real MAC receives the same 117 ns"
 PX_65536 = 0.46e-9        # [paper] "0.46 nW at the mixer for N = 65,536"
@@ -40,8 +39,6 @@ PX_65536 = 0.46e-9        # [paper] "0.46 nW at the mixer for N = 65,536"
 P_COMB_DBM = -65.0        # [repo] data-comb power INSERTED at the mixer RF
                           # port — the demonstrational operating point of the
                           # frozen-battery runs (as physically delivered)
-P_SER_DBM = -24.0         # [repo] serial_nn_runner_m10m24.py POWER=(-24,-10)
-                          # (RF, LO); unpadded chain -> commanded ~ device
 
 SYNC_FRAC = 1 / 32        # [assumption] 1 sync symbol per 32 payload symbols
 
@@ -123,29 +120,11 @@ def comb_nn():
                 vs_h100=H100 / ((e1 + fee) / rmac))
 
 
-# ================================================== 3. serial CNN, (-10,-24)
-def serial_nn(comb):
-    """Serial CNN at (LO,RF)=(-10,-24): one complex product per 3.2-us slot.
-    Readout fee uses the Sec.-D benchmark convention (6 conversions + 8
-    digital MACs per answer), i.e. it ASSUMES the slow coherent
-    integrate-and-dump readout at the row rate — not the as-fielded
-    per-sample SDR capture (reported separately)."""
-    rmac, ans = comb["rmac"], comb["answers"]
-    t_air = comb["cmac"] * T_SLOT
-    e1 = dbm(P_SER_DBM) * t_air / ETA_RADIO
-    fee = ans * FEE_PER_ANSWER
-    return dict(t_air=t_air, e1_img=e1, fee_img=fee, tot_img=e1 + fee,
-                tot_rmac=(e1 + fee) / rmac,
-                vs_h100=((e1 + fee) / rmac) / H100,
-                e2_fielded_rmac=2 * 32 * E_ADC / 4)
-
-
 # ---------------------------------------------------------------- export
 def export_json(path):
     """Figure-ready numbers (for the paper's Fig. 3g overlay and tables)."""
     import json
     d, c = sec_d(), comb_nn()
-    s = serial_nn(c)
     rm = c["rmac"]
     out = dict(
         convention=dict(eta_radio=ETA_RADIO, e_adc_J=E_ADC, e_dig_J=E_DIG,
@@ -173,21 +152,11 @@ def export_json(path):
                 dict(label="network_aggregate",
                      N=round(rm / (4 * c["answers"])),
                      total_fJ_per_realmac=round(c["tot_rmac"] * 1e15, 2))]),
-        serial_nn=dict(
-            operating_point_dbm=dict(lo=-10.0, rf=P_SER_DBM),
-            airtime_per_image_s=s["t_air"],
-            e1_per_image_uJ=s["e1_img"] * 1e6,
-            total_pJ_per_realmac=s["tot_rmac"] * 1e12,
-            vs_h100_above=s["vs_h100"],
-            readout_convention="row-rate integrate-and-dump (6 conv + 8 ops "
-                               "per answer); as-fielded per-sample capture "
-                               "adds ~16 pJ/realMAC"),
         notes=["Client-side ledger only: LO/weight broadcast, DAC synthesis, "
                "static transceiver power and SDR wall-plug excluded "
                "(Sec. II D conventions).",
                "Comb energy is image-independent by construction (frame-RMS "
-               "drive normalization); serial e1 varies per image (frozen "
-               "per-layer drive scales) and carries no error bar here."])
+               "drive normalization)."])
     Path(path).write_text(json.dumps(out, indent=1))
     print(f"wrote {path}")
 
@@ -233,25 +202,6 @@ def main():
     print(f"TOTAL             {c['tot_img']*1e9:8.2f} nJ/img "
           f"= {c['tot_rmac']*1e15:6.2f} fJ/realMAC "
           f"({c['vs_h100']:.1f}x below H100)")
-
-    s = serial_nn(c)
-    print()
-    print("=" * 72)
-    print(f"3. SERIAL CNN at (LO,RF) = (-10, {P_SER_DBM:.0f}) dBm")
-    print("   [repo] serial_nn_runner_m10m24.py POWER=(-24,-10) (RF,LO)")
-    print("=" * 72)
-    print(f"airtime/image     {s['t_air']:8.2f} s   "
-          f"({c['cmac']} slots x 3.2 us)")
-    print(f"e1 (TX)           {s['e1_img']*1e6:8.2f} uJ/img "
-          f"= {s['e1_img']/c['rmac']*1e12:6.2f} pJ/realMAC")
-    print(f"readout fee       {s['fee_img']*1e9:8.2f} nJ/img "
-          f"= {s['fee_img']/c['rmac']*1e15:6.2f} fJ/realMAC")
-    print(f"TOTAL             {s['tot_img']*1e6:8.2f} uJ/img "
-          f"= {s['tot_rmac']*1e12:6.2f} pJ/realMAC "
-          f"({s['vs_h100']:.0f}x ABOVE H100)")
-    print(f"[as-fielded readout instead: "
-          f"{s['e2_fielded_rmac']*1e12:.1f} pJ/realMAC "
-          f"(64 conversions per product) — dominated by e1 anyway]")
 
 
 if __name__ == "__main__":

@@ -68,19 +68,8 @@
    }
   ]
  },
- "serial_nn": {
-  "operating_point_dbm": {
-   "lo": -10.0,
-   "rf": -24.0
-  },
-  "airtime_per_image_s": 23.0780928,
-  "e1_per_image_uJ": 918.7554226379037,
-  "total_pJ_per_realmac": 31.86393803348962,
-  "vs_h100_above": 455.1991147641374,
-  "readout_convention": "row-rate integrate-and-dump (6 conv + 8 ops per answer); as-fielded per-sample capture adds ~16 pJ/realMAC"
- },
  "notes": [
   "Client-side ledger only: LO/weight broadcast, DAC synthesis, static transceiver power and SDR wall-plug excluded (Sec. II D conventions).",
-  "Comb energy is image-independent by construction (frame-RMS drive normalization); serial e1 varies per image (frozen per-layer drive scales) and carries no error bar here."
+  "Comb energy is image-independent by construction (frame-RMS drive normalization)."
  ]
 }
